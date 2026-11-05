@@ -1,6 +1,7 @@
 'use client';
 import { useMemo, useState } from 'react';
 import type { ExternalContest } from '@/lib/onus/external-contests';
+import SaveButton from './SaveButton';
 
 type Group = 'all' | 'univ' | 'open';
 const dayDiff = (today: string, d: string) => Math.round((Date.parse(d) - Date.parse(today)) / 86400000);
@@ -43,7 +44,7 @@ export default function ExternalContests({ items, today }: { items: ExternalCont
          <p>{x.organizer}</p>
          <ul className="on-tags"><li>{x.field}</li><li>대상 · {x.eligibility}</li></ul>
         </div>
-        <a className="on-btn" href={x.url} target="_blank" rel="noopener noreferrer">공식 안내 ↗</a>
+        <div className="on-ext-actions"><a className="on-btn" href={x.url} target="_blank" rel="noopener noreferrer">공식 안내 ↗</a><SaveButton c={{ url: x.url, title: x.title, organizer: x.organizer, deadline: x.deadline }} /></div>
        </li>
       );
      })}

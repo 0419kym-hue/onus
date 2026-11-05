@@ -111,3 +111,69 @@
  .onus .on-group-head{flex-direction:column;align-items:flex-start}
  .onus .on-group-side{flex-direction:row;align-items:center;gap:14px}
 }
+
+/* ---------- 첫 화면 서브 설명, 이름의 의미 ---------- */
+.onus .on-hero2-sub{max-width:36em;margin-top:22px;font-size:clamp(15px,1.5vw,18px);line-height:1.8;color:rgba(255,255,255,.76);word-break:keep-all}
+.onus .on-hero2-scroll{margin-top:38px}
+.onus .on-story{background:var(--on-soft);border-bottom:1px solid var(--on-line)}
+.onus .on-story-inner{max-width:var(--on-max);margin:0 auto;padding:clamp(64px,9vw,120px) var(--on-pad)}
+.onus .on-story-words{display:flex;align-items:center;gap:clamp(14px,3vw,40px);margin:26px 0 34px;flex-wrap:wrap}
+.onus .on-word{display:flex;flex-direction:column;gap:8px;padding:26px 34px;border-radius:28px;background:#fff;box-shadow:0 20px 44px -26px rgba(24,50,150,.45)}
+.onus .on-word-k{font-size:clamp(46px,7vw,92px);font-weight:900;letter-spacing:-.06em;line-height:1;color:var(--on-accent)}
+.onus .on-word strong{font-size:clamp(16px,1.8vw,22px);letter-spacing:-.03em}
+.onus .on-word-link{display:flex;align-items:center;gap:8px;color:var(--on-accent)}
+.onus .on-word-link i{display:block;width:clamp(16px,3vw,44px);height:3px;border-radius:3px;background:linear-gradient(90deg,transparent,var(--on-accent))}
+.onus .on-word-link i:last-child{background:linear-gradient(90deg,var(--on-accent),transparent)}
+.onus .on-word-link b{font-size:clamp(34px,5vw,60px);font-weight:900;line-height:1;animation:on-pulse 2.4s ease-in-out infinite}
+@keyframes on-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(1.18)}}
+.onus .on-story-text{max-width:34em;font-size:clamp(18px,2vw,26px);line-height:1.75;font-weight:600;letter-spacing:-.03em;color:#1b2230;word-break:keep-all}
+
+/* ---------- 나에게 맞는 도전 찾기 ---------- */
+.onus .on-inline-link{font-weight:800;color:var(--on-accent);box-shadow:inset 0 -2px 0 var(--on-accent)}
+.onus .on-finder{margin-top:30px;padding:clamp(22px,3vw,36px);border-radius:28px;background:var(--on-soft)}
+.onus .on-finder-chips button{padding:11px 20px;font-size:14px}
+.onus .on-finder-hint{margin-top:20px;font-size:15px;color:var(--on-mut)}
+.onus .on-finder-out{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:26px}
+.onus .on-finder-out h3{font-size:18px;margin-bottom:14px}
+.onus .on-finder-list{display:grid;gap:12px}
+.onus .on-finder-card{display:flex;flex-direction:column;gap:8px;padding:20px;border-radius:20px;background:#fff;border:1px solid var(--on-line)}
+.onus .on-finder-card strong{font-size:16px;line-height:1.4;letter-spacing:-.025em;overflow-wrap:anywhere}
+.onus .on-finder-card .on-cta{margin-top:6px;gap:8px}
+.onus .on-finder-card .on-btn{padding:9px 16px;font-size:13px}
+.onus .on-finder-work{display:grid;grid-template-columns:76px 1fr;gap:16px;align-items:center;padding:12px;border-radius:20px;background:#fff;border:1px solid var(--on-line);transition:transform .2s,box-shadow .2s}
+.onus .on-finder-work:hover{transform:translateY(-3px);box-shadow:0 16px 34px -20px rgba(24,50,150,.45)}
+.onus .on-finder-work img,.onus .on-finder-ph{width:76px;height:95px;border-radius:12px;object-fit:cover;object-position:top;background:var(--on-ink);color:#8fb0ff;display:grid;place-items:center;font-size:11px;font-weight:800}
+.onus .on-finder-work span:last-child{display:flex;flex-direction:column;gap:4px;min-width:0}
+.onus .on-finder-work strong{font-size:15px;letter-spacing:-.025em;overflow-wrap:anywhere}
+.onus .on-finder-work em{font-style:normal;font-size:12px;color:var(--on-mut);font-weight:600}
+.onus .on-finder-work i{font-style:normal;align-self:flex-start;padding:2px 10px;border-radius:999px;background:#e8efff;color:#1b3fc4;font-size:11px;font-weight:800}
+
+/* ---------- 도전 보드, 담기 버튼 ---------- */
+.onus .on-save{font:inherit;font-size:13px;font-weight:800;padding:9px 16px;border-radius:999px;border:2px solid var(--on-accent);background:#fff;color:var(--on-accent);cursor:pointer;transition:background .15s,color .15s}
+.onus .on-save:hover{background:var(--on-accent);color:#fff}
+.onus .on-save[aria-pressed=true]{background:var(--on-accent);color:#fff}
+.onus .on-ext-actions{display:flex;flex-direction:column;gap:8px;align-items:stretch}
+.onus .on-ext .on-ext-actions .on-btn{justify-content:center}
+.onus .on-board-next{display:grid;grid-template-columns:auto auto 1fr;align-items:center;gap:18px;padding:22px 28px;margin-bottom:26px;border-radius:24px;color:#fff;background:linear-gradient(135deg,#0c1f66,#2457ff)}
+.onus .on-board-next span{font-size:13px;font-weight:800;opacity:.8}
+.onus .on-board-next strong{font-size:clamp(32px,4vw,52px);font-weight:900;letter-spacing:-.05em;line-height:1}
+.onus .on-board-next p{font-size:clamp(15px,1.6vw,19px);font-weight:700;overflow-wrap:anywhere}
+.onus .on-board-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.onus .on-board-item{display:flex;flex-direction:column;gap:10px;padding:26px;border-radius:24px;background:#fff;border:1px solid var(--on-line)}
+.onus .on-board-expired{opacity:.6}
+.onus .on-board-top{display:flex;align-items:center;gap:12px}
+.onus .on-board-item h3{font-size:19px;line-height:1.4;letter-spacing:-.03em;overflow-wrap:anywhere}
+.onus .on-board-org{font-size:13px;color:var(--on-mut);font-weight:600}
+.onus .on-progress{height:8px;border-radius:99px;background:var(--on-soft);overflow:hidden}
+.onus .on-progress span{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#2457ff,#4f86ff);transition:width .3s}
+.onus .on-steps{display:grid;grid-template-columns:1fr 1fr;gap:8px 14px}
+.onus .on-steps label{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:650;cursor:pointer}
+.onus .on-steps input{width:18px;height:18px;accent-color:var(--on-accent)}
+.onus .on-board-item .on-cta{margin-top:6px;gap:8px}
+.onus .on-board-item .on-btn{padding:9px 16px;font-size:13px}
+
+@media(max-width:900px){
+ .onus .on-finder-out,.onus .on-board-list{grid-template-columns:1fr}
+ .onus .on-board-next{grid-template-columns:1fr;gap:6px}
+}
+@media(prefers-reduced-motion:reduce){.onus .on-word-link b{animation:none}}

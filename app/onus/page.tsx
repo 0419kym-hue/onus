@@ -1,13 +1,16 @@
 import Link from 'next/link';
+import ChallengeFinder, { type FinderContest, type FinderWork } from '@/components/onus/ChallengeFinder';
 import Icon, { type IconName } from '@/components/onus/Icons';
 import Reveal from '@/components/onus/Reveal';
+import { AWARD_RANK } from '@/lib/onus/awards';
+import { sortedWorks } from '@/lib/onus/data';
 import { externalContests } from '@/lib/onus/external-contests';
 import { sortedNews } from '@/lib/onus/news';
 
 export const dynamic = 'force-dynamic'; // 마감이 지난 공모전은 빼고 오늘 기준으로 보여 주기 위해 요청 시점의 날짜를 씁니다.
 
 const TILES: { href: string; icon: IconName; title: string; desc: string }[] = [
- { href: '/onus/archive', icon: 'archive', title: '수상 아카이브', desc: '선배들의 수상작과 준비 기록' },
+ { href: '/onus/archive', icon: 'archive', title: '수상 아카이브', desc: '공모전별로 모은 선배들의 수상작' },
  { href: '/onus/contests', icon: 'trophy', title: '공모전', desc: '지금 접수 중인 공모전과 대회 성격' },
  { href: '/onus/news', icon: 'news', title: '한양여대 소식', desc: '공모전·대회 관련 기사 모음' },
  { href: '/onus/community', icon: 'chat', title: '커뮤니티', desc: '팀원 모집, 모임 공간, 참가 학생' },
@@ -17,8 +20,11 @@ const TILES: { href: string; icon: IconName; title: string; desc: string }[] = [
 export default function OnusHome() {
  const today = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Asia/Seoul' }).format(new Date());
  const dday = (d: string) => Math.round((Date.parse(d) - Date.parse(today)) / 86400000);
- const soon = externalContests.filter((x) => x.deadline >= today).sort((a, b) => a.deadline.localeCompare(b.deadline)).slice(0, 4);
+ const live = externalContests.filter((x) => x.deadline >= today).sort((a, b) => a.deadline.localeCompare(b.deadline));
+ const soon = live.slice(0, 4);
  const latest = sortedNews().slice(0, 3);
+ const finderContests: FinderContest[] = live.map((x) => ({ url: x.url, title: x.title, organizer: x.organizer, deadline: x.deadline, field: x.field }));
+ const finderWorks: FinderWork[] = sortedWorks().map((w) => ({ slug: w.slug, title: w.title, subtitle: w.subtitle, fields: w.fields, award: w.award, rank: AWARD_RANK[w.award], cover: w.cover, contestName: w.contestName }));
 
  return (
   <main id="main">
@@ -28,8 +34,32 @@ export default function OnusHome() {
      <p className="on-hero2-chip"><img src="/onus/brand/hywoman-mark.webp" alt="" width={26} height={26} />한양여자대학교 공모전·대회 플랫폼</p>
      <h1 className="on-wordmark" aria-label="ON:US">ON<span>:</span>US</h1>
      <p className="on-hero2-line">우리의 도전에 불을 켜다.</p>
-     <a className="on-hero2-scroll" href="#services">둘러보기 <span aria-hidden="true">↓</span></a>
+     <p className="on-hero2-sub">선배들의 공모전 출품작과 수상 경험을 공유하고, 한양여대의 소식을 알고 인증된 선배의 피드백으로 새로운 도전을 연결하는 한양여대 전용 플랫폼.</p>
+     <a className="on-hero2-scroll" href="#about">둘러보기 <span aria-hidden="true">↓</span></a>
     </div>
+   </section>
+
+   <section id="about" className="on-story">
+    <div className="on-story-inner">
+     <Reveal>
+      <p className="on-eyebrow">ABOUT · 이름의 의미</p>
+      <div className="on-story-words" aria-hidden="true">
+       <div className="on-word"><span className="on-word-k">ON</span><strong>연결하고 활성화하다</strong></div>
+       <span className="on-word-link"><i /><b>:</b><i /></span>
+       <div className="on-word"><span className="on-word-k">US</span><strong>우리</strong></div>
+      </div>
+      <p className="on-story-text">{"ON:US는 'ON(연결하고 활성화하다)'과 'US(우리)'를 결합한 이름입니다."} 선배들의 작품과 경험이 후배의 새로운 도전으로 이어지고, 서로의 지식과 가능성을 연결한다는 의미를 담고 있습니다.</p>
+     </Reveal>
+    </div>
+   </section>
+
+   <section className="on-section">
+    <Reveal>
+     <p className="on-eyebrow">FIND YOUR CHALLENGE</p>
+     <h2>나에게 맞는 도전 찾기</h2>
+     <p className="on-section-lead">관심 분야를 고르면 지금 접수 중인 공모전과 같은 분야의 선배 작품을 한 번에 보여 줘요. 마음에 드는 공모전은 <Link className="on-inline-link" href="/onus/board">나의 도전 보드</Link>에 담아 마감과 준비 단계를 챙길 수 있어요.</p>
+    </Reveal>
+    <ChallengeFinder contests={finderContests} works={finderWorks} today={today} />
    </section>
 
    <section id="services" className="on-section">

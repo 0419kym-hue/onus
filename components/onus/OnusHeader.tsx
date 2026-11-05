@@ -6,6 +6,7 @@ export default function OnusHeader() {
  const pathname = usePathname();
  const inArchive = pathname.startsWith('/onus/archive') || pathname.startsWith('/onus/works');
  const inNews = pathname.startsWith('/onus/news');
+ const inBoard = pathname.startsWith('/onus/board');
  const inContests = pathname.startsWith('/onus/contests');
  const inCommunity = pathname.startsWith('/onus/community');
  return (
@@ -20,6 +21,7 @@ export default function OnusHeader() {
     <Link href="/onus/archive" aria-current={inArchive ? 'page' : undefined}>수상 아카이브</Link>
     <Link href="/onus/contests" aria-current={inContests ? 'page' : undefined}>공모전</Link>
     <Link href="/onus/news" aria-current={inNews ? 'page' : undefined}>소식</Link>
+    <Link href="/onus/board" aria-current={inBoard ? 'page' : undefined}>도전 보드</Link>
     <Link href="/onus/community" aria-current={inCommunity ? 'page' : undefined}>커뮤니티</Link>
     <Link href="/onus/verify" aria-current={pathname.startsWith('/onus/verify') ? 'page' : undefined}>경험 인증</Link>
    </nav>
