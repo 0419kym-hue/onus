@@ -2,10 +2,11 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import OnusHeader from '@/components/onus/OnusHeader';
 import './onus.css';
+import './onus-redesign.css';
 
 export const metadata: Metadata = {
- title: { default: 'ON:US | 선배의 수상 경험을 후배의 다음 도전으로', template: '%s | ON:US' },
- description: '한양여자대학교 학생을 위한 공모전·대회 경험 아카이브. 선배의 실제 출품작과 대회의 성격을 한곳에서 확인합니다.',
+ title: { default: 'ON:US | 우리의 도전에 불을 켜다', template: '%s | ON:US' },
+ description: '한양여자대학교 공모전·대회 플랫폼. 선배의 수상작, 접수 중인 공모전, 학교 소식을 한곳에서 만나요.',
 };
 
 export default function OnusLayout({ children }: Readonly<{ children: React.ReactNode }>) {

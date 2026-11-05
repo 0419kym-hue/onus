@@ -23,7 +23,7 @@ export default async function ContestPage({ params }: { params: Promise<{ slug: 
 
  return (
   <main id="main" className="on-detail">
-   <Link className="on-back" href="/onus#contests">← 대회 성격</Link>
+   <Link className="on-back" href="/onus/contests">← 공모전</Link>
 
    <section className="on-contest-head">
     <p className="on-eyebrow">CONTEST · {contest.editions.map((e) => e.year).join(' · ')}</p>

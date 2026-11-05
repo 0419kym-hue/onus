@@ -31,7 +31,7 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
 
  return (
   <main id="main" className="on-detail">
-   <Link className="on-back" href="/onus#archive">← 수상 아카이브</Link>
+   <Link className="on-back" href="/onus/archive">← 수상 아카이브</Link>
 
    <section className="on-detail-top">
     <ViewTransition name={`work-${work.slug}`}>

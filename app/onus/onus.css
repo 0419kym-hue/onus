@@ -1,17 +1,17 @@
 /* ON:US 전용 스타일. 모든 규칙은 .onus 범위 안에서만 적용되어 기존 HY컴퍼니 화면에 영향을 주지 않습니다.
    포인트 색을 바꾸려면 --on-accent 한 줄만 고치면 됩니다. */
-.onus{--on-bg:#f5f3ec;--on-ink:#15131c;--on-mut:#6a6676;--on-line:#ddd8cb;--on-card:#fffefa;--on-soft:#ebe7db;--on-accent:#ff5533;
+.onus{--on-bg:#ffffff;--on-ink:#101319;--on-mut:#5d6573;--on-line:#e3e7ee;--on-card:#ffffff;--on-soft:#f2f5fa;--on-accent:#2457ff;--on-accent-ink:#ffffff;--on-navy:#070d2b;
  --on-max:1320px;--on-pad:clamp(20px,4.4vw,56px);
  background:var(--on-bg);color:var(--on-ink);min-height:100vh;font-family:Pretendard,Arial,sans-serif}
 .onus *{box-sizing:border-box}
 .onus ul{list-style:none;margin:0;padding:0}
 .onus img{max-width:100%}
 .onus a:focus-visible,.onus button:focus-visible,.onus input:focus-visible,.onus select:focus-visible{outline:3px solid var(--on-ink);outline-offset:3px}
-.onus ::selection{background:var(--on-accent);color:var(--on-ink)}
+.onus ::selection{background:var(--on-accent);color:#fff}
 .onus .on-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 /* ---------- 헤더 ---------- */
-.onus .on-header{position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;max-width:none;padding:0 var(--on-pad);height:64px;background:rgba(245,243,236,.88);-webkit-backdrop-filter:saturate(1.4) blur(12px);backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid var(--on-line)}
+.onus .on-header{position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;max-width:none;padding:0 var(--on-pad);height:64px;background:rgba(255,255,255,.86);-webkit-backdrop-filter:saturate(1.4) blur(12px);backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid var(--on-line)}
 .onus .on-brand{display:inline-flex;align-items:center;gap:0;font-size:22px;font-weight:900;letter-spacing:-.03em}
 .onus .on-brand-mark{width:12px;height:12px;background:var(--on-accent);margin-right:9px;border-radius:2px;transform:rotate(45deg)}
 .onus .on-brand-colon{color:var(--on-accent)}
@@ -39,7 +39,7 @@
 .onus .on-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
 .onus .on-btn{display:inline-flex;align-items:center;gap:12px;padding:16px 24px;border:2px solid var(--on-ink);border-radius:999px;font-size:15px;font-weight:750;background:transparent;transition:transform .18s,background .18s,color .18s}
 .onus .on-btn:hover{transform:translateY(-2px);background:var(--on-ink);color:#fff}
-.onus .on-btn-primary{background:var(--on-accent);border-color:var(--on-accent);color:var(--on-ink)}
+.onus .on-btn-primary{background:var(--on-accent);border-color:var(--on-accent);color:var(--on-accent-ink)}
 .onus .on-btn-primary:hover{background:var(--on-ink);border-color:var(--on-ink);color:#fff}
 
 /* ---------- 히어로 ---------- */
@@ -74,7 +74,7 @@
 .onus .on-reveal[data-in]{opacity:1;transform:none}
 
 /* ---------- 필터 ---------- */
-.onus .on-filter{position:sticky;top:64px;z-index:10;display:grid;gap:10px;margin-top:30px;padding:14px 0;background:rgba(245,243,236,.94);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid var(--on-line)}
+.onus .on-filter{position:sticky;top:64px;z-index:10;display:grid;gap:10px;margin-top:30px;padding:14px 0;background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid var(--on-line)}
 .onus .on-search input{width:100%;padding:15px 20px;border:2px solid var(--on-ink);border-radius:999px;background:var(--on-card);font:inherit;font-size:15px;color:var(--on-ink)}
 .onus .on-search input::placeholder{color:#8a8696}
 .onus .on-chips{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
@@ -97,7 +97,7 @@
 .onus .on-card-img img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
 .onus .on-card:hover .on-card-img img{transform:scale(1.045)}
 .onus .on-card-type{width:100%;height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:22px;background:var(--on-ink);color:#fff}
-.onus .on-card-type span{font-size:12px;font-weight:800;letter-spacing:.14em;color:var(--on-accent)}
+.onus .on-card-type span{font-size:12px;font-weight:800;letter-spacing:.14em;color:#8fb0ff}
 .onus .on-card-type strong{font-size:clamp(18px,2vw,26px);line-height:1.3;letter-spacing:-.03em;font-weight:900}
 .onus .on-card-badge{position:absolute;top:12px;left:12px}
 .onus .on-card-body{padding-top:16px}
@@ -112,7 +112,7 @@
 /* ---------- 배지 ---------- */
 .onus .on-badge{display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:999px;font-size:12px;font-weight:850;line-height:1.2;background:var(--on-card);color:var(--on-ink);border:1px solid var(--on-ink)}
 .onus .on-badge-kind{font-size:10px;font-weight:700;opacity:.65}
-.onus .on-badge-top{background:var(--on-accent);border-color:var(--on-accent)}
+.onus .on-badge-top{background:var(--on-accent);border-color:var(--on-accent);color:var(--on-accent-ink)}
 .onus .on-badge-mid{background:var(--on-ink);color:#fff}
 .onus .on-badge-lg{font-size:15px;padding:9px 18px}
 
@@ -120,7 +120,7 @@
 .onus .on-contest-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:36px}
 .onus .on-contest-card{display:flex;flex-direction:column;height:100%;padding:26px;border:1px solid var(--on-line);border-radius:18px;background:var(--on-card);transition:transform .2s,border-color .2s}
 .onus .on-contest-card:hover{transform:translateY(-4px);border-color:var(--on-ink)}
-.onus .on-contest-count{font-size:12px;font-weight:800;color:var(--on-accent);filter:brightness(.78)}
+.onus .on-contest-count{font-size:12px;font-weight:800;color:var(--on-accent)}
 .onus .on-contest-card h3{margin-top:12px;font-size:22px;letter-spacing:-.035em;line-height:1.25}
 .onus .on-contest-card p{margin-top:10px;font-size:14px;color:#4a4655;flex:1}
 
@@ -160,9 +160,9 @@
 .onus .on-panel{padding:clamp(24px,3vw,40px);border:2px solid var(--on-ink);border-radius:20px;background:var(--on-card)}
 .onus .on-panel h2{font-size:clamp(24px,2.6vw,34px);margin-bottom:16px}
 .onus .on-panel p+p{margin-top:12px}
-.onus .on-panel-accent{background:var(--on-accent);border-color:var(--on-accent)}
-.onus .on-panel-accent .on-eyebrow,.onus .on-panel-accent .on-small{color:rgba(21,19,28,.72)}
-.onus .on-panel-accent .on-list li::before{background:var(--on-ink)}
+.onus .on-panel-accent{background:linear-gradient(135deg,#1c46e0,#2d6bff);border-color:transparent;color:var(--on-accent-ink)}
+.onus .on-panel-accent .on-eyebrow,.onus .on-panel-accent .on-small{color:rgba(255,255,255,.82)}
+.onus .on-panel-accent .on-list li::before{background:#fff}
 .onus .on-panel-empty{border-style:dashed;border-color:var(--on-line);background:transparent}
 .onus .on-boards{display:grid;gap:22px;margin-top:30px;justify-items:center}
 .onus .on-boards>div{width:100%;max-width:1100px}
@@ -324,8 +324,8 @@
 @media(max-width:700px){.onus .on-identity{grid-template-columns:1fr}}
 
 /* ---------- 경험 인증 / 운영자 심사 ---------- */
-.onus .on-pill-verified{background:var(--on-accent);color:var(--on-ink)}
-.onus .on-chip-verified{background:var(--on-accent);color:var(--on-ink)}
+.onus .on-pill-verified{background:var(--on-accent);color:var(--on-accent-ink)}
+.onus .on-chip-verified{background:var(--on-accent);color:var(--on-accent-ink)}
 .onus .on-verify-wrap{display:grid;gap:22px;margin-top:28px}
 .onus .on-verify-info h2{font-size:22px;margin-bottom:6px}
 .onus .on-msg-ok{border-left-color:#1f8a4c;background:#eefaf2}
