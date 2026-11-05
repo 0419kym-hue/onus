@@ -68,7 +68,7 @@ export const works: Work[] = [
   contestSlug: 'seocho-ai-design', contestName: '2026 청년 AI 디자인 공모전', year: 2026, award: '장려상', organizer: '서울특별시 서초구', slogan: 'NEXT 서초, AI로 미래를 디자인하다',
   fields: ['AI 디자인', '미래도시', '수변공간', '스마트 인프라'],
   description: '서초구의 수변 공간을 중심으로 태양광 캐노피, 드론 배송, 무장애 이동 동선, 스마트 케어, 수상 모빌리티를 통합한 미래도시 공간 제안.',
-  images: [], pdf: '/onus/pdf/future-seocho.pdf',
+  cover: cover('future-seocho'), images: [w('future-seocho-1', 0.7069)], pdf: '/onus/pdf/future-seocho.pdf',
   contestFit: '공모 주제는 서초의 대표 장소나 상징을 포함해 기술과 문화가 융합된 미래 서초를 AI로 구현하는 것입니다. 이 작품은 서초구의 수변 공간을 중심에 두고 있어 장소 조건에 맞는 방향입니다. 보도 수치로는 263점이 접수되어 20점이 시상되었습니다. 이미지 분야 중 어디에 냈는지는 기록에 없어요.',
  },
  {

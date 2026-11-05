@@ -89,8 +89,8 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
      ))}
      {work.pdf && (
       <Reveal>
-       <iframe className="on-pdf" src={`${work.pdf}#view=FitH`} title={`${work.title} 작품 PDF`} />
-       <p className="on-small">PDF가 보이지 않으면 <a href={work.pdf} target="_blank" rel="noopener noreferrer">새 창에서 열기 ↗</a> (약 15MB)</p>
+       {work.images.length === 0 && <iframe className="on-pdf" src={`${work.pdf}#view=FitH`} title={`${work.title} 작품 PDF`} />}
+       <p className="on-small">제출한 원본 PDF는 <a href={work.pdf} target="_blank" rel="noopener noreferrer">새 창에서 열기 ↗</a> (약 15MB)</p>
       </Reveal>
      )}
     </div>
