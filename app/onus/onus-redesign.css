@@ -97,3 +97,17 @@
 
 /* 스크롤 효과 래퍼가 없는 목록에서도 카드가 칸 전체 너비를 채우게 합니다 */
 .onus .on-news-grid>li>a,.onus .on-soon-grid>li>a,.onus .on-tiles>li>a,.onus .on-contest-grid>li>a{width:100%}
+
+/* 공모전(회차)별 섹션 */
+.onus .on-group{margin-top:64px;scroll-margin-top:140px}
+.onus .on-group:first-of-type{margin-top:36px}
+.onus .on-group-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;padding-bottom:20px;margin-bottom:26px;border-bottom:2px solid var(--on-ink)}
+.onus .on-group-year{font-size:13px;font-weight:900;letter-spacing:.12em;color:var(--on-accent);margin:0 0 6px}
+.onus .on-group-head h2{font-size:clamp(24px,3vw,38px);letter-spacing:-.045em;line-height:1.2;overflow-wrap:anywhere}
+.onus .on-group-side{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0}
+.onus .on-group-count{padding:5px 13px;border-radius:999px;background:var(--on-soft);font-size:12.5px;font-weight:800}
+.onus .on-group-side .on-more{margin-top:0;white-space:nowrap}
+@media(max-width:700px){
+ .onus .on-group-head{flex-direction:column;align-items:flex-start}
+ .onus .on-group-side{flex-direction:row;align-items:center;gap:14px}
+}

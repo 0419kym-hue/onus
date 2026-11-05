@@ -31,3 +31,17 @@ export function stats() {
   .sort((a, b) => b[1] - a[1]);
  return { total: works.length, byAward, byYear, byContest };
 }
+
+// 공모전(회차)별 묶음: 같은 연도 안에서는 contests 배열 순서를 따르고, 각 묶음 안에서는 높은 등급이 먼저 보입니다.
+export function groupedByEdition() {
+ const order = contests.map((c) => c.slug);
+ const map = new Map<string, { key: string; name: string; year: number; contestSlug: string; works: Work[] }>();
+ for (const w of works) {
+  const g = map.get(w.contestName) ?? { key: w.contestName, name: w.contestName, year: w.year, contestSlug: w.contestSlug, works: [] as Work[] };
+  g.works.push(w);
+  map.set(w.contestName, g);
+ }
+ return [...map.values()]
+  .map((g) => ({ ...g, works: [...g.works].sort(compareWorks) }))
+  .sort((a, b) => b.year - a.year || order.indexOf(a.contestSlug) - order.indexOf(b.contestSlug));
+}
