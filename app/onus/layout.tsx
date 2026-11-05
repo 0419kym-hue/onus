@@ -3,6 +3,7 @@ import Link from 'next/link';
 import OnusHeader from '@/components/onus/OnusHeader';
 import './onus.css';
 import './onus-redesign.css';
+import './onus-toss.css';
 
 export const metadata: Metadata = {
  title: { default: 'ON:US | 우리의 도전에 불을 켜다', template: '%s | ON:US' },
