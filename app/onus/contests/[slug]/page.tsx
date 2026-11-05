@@ -2,7 +2,9 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import AwardBadge from '@/components/onus/AwardBadge';
+import PrepChecklist from '@/components/onus/PrepChecklist';
 import Reveal from '@/components/onus/Reveal';
+import { durationLabel } from '@/lib/onus/journey';
 import { allContests, getContest, worksOfContest } from '@/lib/onus/data';
 
 export function generateStaticParams() {
@@ -20,6 +22,8 @@ export default async function ContestPage({ params }: { params: Promise<{ slug: 
  const contest = getContest(slug);
  if (!contest) notFound();
  const list = worksOfContest(contest.slug);
+ const typical = list.map((w) => durationLabel(w.journey)).find(Boolean);
+ const checklist = [...contest.checkpoints, '공식 요강 원문에서 접수 기간·참가 자격 다시 확인하기'];
 
  return (
   <main id="main" className="on-detail">
@@ -59,6 +63,15 @@ export default async function ContestPage({ params }: { params: Promise<{ slug: 
      <h3>확인하지 못한 것</h3>
      <ul className="on-list">{contest.unknown.map((u) => <li key={u}>{u}</li>)}</ul>
     </Reveal>
+   </section>
+
+   <section className="on-section">
+    <Reveal>
+     <p className="on-eyebrow">출품 준비 체크리스트</p>
+     <h2>이 대회에 나가려면 확인할 것</h2>
+     <p className="on-section-lead">이 대회 정보의 확인할 점을 체크하며 준비해 보세요. 규칙 기반 목록이고 AI가 만든 내용이 아니에요.</p>
+    </Reveal>
+    <PrepChecklist slug={contest.slug} items={checklist} typical={typical} />
    </section>
 
    <section className="on-section">

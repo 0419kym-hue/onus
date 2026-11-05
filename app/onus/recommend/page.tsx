@@ -4,15 +4,16 @@ import AiRecommend from '@/components/onus/AiRecommend';
 import Icon, { type IconName } from '@/components/onus/Icons';
 import PageHead from '@/components/onus/PageHead';
 import Reveal from '@/components/onus/Reveal';
+import { aiEnabled } from '@/lib/onus/flags';
 import { externalContests } from '@/lib/onus/external-contests';
 
 export const metadata: Metadata = { title: 'AI 맞춤 공모전 추천', description: '전공과 관심사, 경험을 적으면 지금 접수 중인 공모전 중에서 AI가 참가 자격까지 따져 추천해 드려요.' };
 export const dynamic = 'force-dynamic'; // 마감이 지난 공모전은 빼고 오늘 기준으로 추천하기 위해 요청 시점의 날짜를 씁니다.
 
 const STEPS: { icon: IconName; title: string; desc: string }[] = [
- { icon: 'chat', title: '나를 소개해요', desc: '전공, 관심 분야, 해 본 경험을 편하게 적어 주세요. 예시 문장을 눌러도 돼요.' },
- { icon: 'spark', title: 'AI가 골라요', desc: '지금 접수 중인 공모전만 후보로 두고, 분야와 참가 자격이 맞는지 따져 봐요.' },
- { icon: 'trophy', title: '바로 도전해요', desc: '적합도와 이유를 확인하고, 공식 안내로 이동하거나 도전 보드에 담아요.' },
+ { icon: 'chat', title: '학과와 수업을 알려요', desc: '학과, 수강 중·수강한 수업, 관심사를 적어 주세요. 시간표를 붙여넣어도 돼요.' },
+ { icon: 'spark', title: 'AI가 골라요', desc: '접수 중인 공모전 중 수업과 분야, 참가 자격이 맞는 곳을 고르고 마감일 기준 준비 일정을 제안해요.' },
+ { icon: 'trophy', title: '선배의 길을 따라가요', desc: '같은 분야로 수상한 선배 작품을 보고, 공식 안내로 이동하거나 도전 보드에 담아요.' },
 ];
 
 export default function RecommendPage() {
@@ -22,7 +23,7 @@ export default function RecommendPage() {
   <main id="main">
    <PageHead eyebrow="AI RECOMMEND" title="나에게 맞는 공모전, AI가 골라 줘요" lead={`지금 접수 중인 공모전 ${live}개 중에서 전공·관심사·경험에 맞는 곳을 추천해요. 대학생 참가 가능 여부도 함께 따져 드려요.`} icon="spark" />
    <section className="on-section on-section-tight on-narrow-wide">
-    <AiRecommend today={today} />
+    {aiEnabled() ? <AiRecommend today={today} /> : <div className="on-empty" role="status"><strong>AI 추천은 지금 꺼져 있어요</strong><p>대신 <Link className="on-inline-link" href="/onus">첫 화면의 "나에게 맞는 도전 찾기"</Link>(키워드 규칙 기반)와 <Link className="on-inline-link" href="/onus/contests">공모전 모음</Link>을 이용해 주세요.</p></div>}
    </section>
    <section className="on-section">
     <Reveal><p className="on-eyebrow">HOW IT WORKS</p><h2>이렇게 추천해요</h2></Reveal>

@@ -3,6 +3,7 @@ import AiRecommend from '@/components/onus/AiRecommend';
 import ChallengeFinder, { type FinderContest, type FinderWork } from '@/components/onus/ChallengeFinder';
 import Icon, { type IconName } from '@/components/onus/Icons';
 import CountUp from '@/components/onus/CountUp';
+import { aiEnabled } from '@/lib/onus/flags';
 import HeroScene from '@/components/onus/HeroScene';
 import Reveal from '@/components/onus/Reveal';
 import Tilt from '@/components/onus/Tilt';
@@ -90,7 +91,7 @@ export default function OnusHome() {
      <h2>나에게 딱 맞는 공모전, AI가 골라 줘요</h2>
      <p className="on-section-lead">전공과 관심사, 경험을 적으면 지금 접수 중인 공모전 중에서 참가 자격까지 따져 추천해 드려요.</p>
     </Reveal>
-    <AiRecommend today={today} />
+    {aiEnabled() ? <AiRecommend today={today} /> : <div className="on-empty" role="status"><strong>AI 추천은 지금 꺼져 있어요</strong><p>아래 "나에게 맞는 도전 찾기"를 이용해 주세요.</p></div>}
     <p className="on-ai-more"><Link className="on-more" href="/onus/recommend">AI 추천 전체 화면으로 보기 →</Link></p>
    </section>
 

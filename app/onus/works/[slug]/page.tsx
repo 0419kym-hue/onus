@@ -7,6 +7,7 @@ import Reveal from '@/components/onus/Reveal';
 import CommentThread from '@/components/onus/CommentThread';
 import { awardKind } from '@/lib/onus/awards';
 import { getComments, STATE_MESSAGE } from '@/lib/onus/community';
+import { durationLabel } from '@/lib/onus/journey';
 import { getContest, getWork, sortedWorks, worksOfContest } from '@/lib/onus/data';
 
 export const dynamic = 'force-dynamic'; // 코멘트가 바로 보이도록 요청 때마다 불러옵니다.
@@ -59,6 +60,25 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
    </section>
 
    {contest && (
+    <section className="on-section on-section-tight" aria-label="한눈 요약">
+     <Reveal><p className="on-eyebrow">한눈 요약 · 이 페이지에서 바로 확인</p></Reveal>
+     <div className="on-glance">
+      <div><span className="k">대회와 수상</span><p>{work.contestName}<br />{work.award}</p></div>
+      {contest.facts.filter((f) => {
+       if (!/접수 일정|시상|규격|개요/.test(f.label)) return false;
+       // 회차가 적힌 정보는 이 작품의 연도와 같은 회차일 때만 보여 줍니다(2025 작품에 2026 일정을 보여 주지 않기 위해).
+       const hint = /제35회|\(2026\)|2026/.test(f.label) ? 2026 : /제34회|\(2025\)|2025/.test(f.label) ? 2025 : null;
+       return hint === null || hint === work.year;
+      }).slice(0, 3).map((f) => (
+       <div key={f.label}><span className="k">{f.label}</span><p>{f.value}</p></div>
+      ))}
+      <div><span className="k">다음에 나갈 때 확인할 점 <small>(최근 회차 기준)</small></span><ul>{contest.checkpoints.slice(0, 4).map((c) => <li key={c}>{c}</li>)}</ul></div>
+      <div><span className="k">준비 기록</span><p>{work.journey ? `${durationLabel(work.journey) ? `${durationLabel(work.journey)} 준비` : '기록 있음'}${work.journey.team ? ` · ${work.journey.team}` : ''}${work.journey.steps ? ` · ${work.journey.steps.length}단계` : ''}` : '아직 기록되지 않았어요'}</p></div>
+     </div>
+    </section>
+   )}
+
+   {contest && (
     <section className="on-section on-two">
      <Reveal className="on-panel">
       <p className="on-eyebrow">이 대회는</p>
@@ -97,11 +117,36 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
    </section>
 
    <section className="on-section on-two">
-    <Reveal className="on-panel on-panel-empty">
-     <p className="on-eyebrow">준비 과정과 경험 <span className="on-pill">아직 없음</span></p>
-     <h2>작성자가 아직 기록하지 않았어요</h2>
-     <p>아이디어를 어떻게 정했는지, 어떤 판단을 바꿨는지, 제출 규격에서 막힌 점이 무엇이었는지는 후배에게 가장 도움이 되는 정보입니다. 경험 기록 기능은 준비 중이에요.</p>
-    </Reveal>
+    {work.journey ? (
+     <Reveal className="on-panel">
+      <p className="on-eyebrow">준비 과정과 경험 <span className="on-pill">작성자 기록</span></p>
+      <h2>어떻게 준비했을까</h2>
+      <div className="on-journey">
+       <ul className="on-journey-meta">
+        {durationLabel(work.journey) && <li>준비 {durationLabel(work.journey)}</li>}
+        {work.journey.hours && <li>{work.journey.hours}</li>}
+        {work.journey.team && <li>{work.journey.team}</li>}
+        {work.journey.tools?.map((t) => <li key={t}>{t}</li>)}
+       </ul>
+       {work.journey.steps && (
+        <ol className="on-journey-steps">
+         {work.journey.steps.map((s) => (
+          <li key={s.title}><strong>{s.title}</strong>{s.days ? <em>{s.days}일</em> : null}{s.detail && <p>{s.detail}</p>}</li>
+         ))}
+        </ol>
+       )}
+       {work.journey.note && <p className="on-small">{work.journey.note}</p>}
+       {work.journey.tries && <p><b>시도하고 바꾼 것</b><br />{work.journey.tries}</p>}
+       {work.journey.tip && <p><b>후배에게</b><br />{work.journey.tip}</p>}
+      </div>
+     </Reveal>
+    ) : (
+     <Reveal className="on-panel on-panel-empty">
+      <p className="on-eyebrow">준비 과정과 경험 <span className="on-pill">아직 없음</span></p>
+      <h2>작성자가 아직 기록하지 않았어요</h2>
+      <p>어떤 방법으로, 어떤 시도를 하며, 얼마나 걸렸는지는 후배에게 가장 도움이 되는 정보예요. 작성자만 알 수 있는 내용이라 추측해서 채우지 않았어요. 기록이 들어오면 실행 순서와 소요 기간이 이 자리에 보여요.</p>
+     </Reveal>
+    )}
     <Reveal className="on-panel on-panel-empty" delay={80}>
      <p className="on-eyebrow">인증된 경험자에게 피드백 요청 <span className="on-pill">아직 없음</span></p>
      <h2>경험자 인증과 피드백 요청</h2>

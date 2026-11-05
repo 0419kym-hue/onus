@@ -380,3 +380,110 @@
  .onus{--on-glass:rgba(255,255,255,.9);--on-glass-strong:#fff}
  .onus .on-section-alt,.onus .on-story{background:rgba(255,255,255,.7)}
 }
+
+/* =====================================================================
+   AI 고도화(학과·수업 입력, 닮은 선배, 준비 일정) + 아카이브 한눈에 보기 + 작품 요약
+   ===================================================================== */
+.onus .on-ai-grid{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:12px}
+.onus .on-ai-field{display:grid;gap:6px}
+.onus .on-ai-field>span{font-size:14px;font-weight:700;color:var(--on-g800)}
+.onus .on-ai-field>span em{margin-left:6px;font-style:normal;font-size:12.5px;font-weight:500;color:var(--on-g500)}
+.onus .on-ai-field input,.onus .on-ai-field select{min-height:48px;padding:12px 16px;border:1px solid rgba(255,255,255,.9);border-radius:var(--on-r-in);background:rgba(255,255,255,.75);font:inherit;font-size:15px;color:var(--on-ink)}
+.onus .on-ai-field input:focus,.onus .on-ai-field select:focus{outline:0;border-color:var(--on-accent);background:#fff}
+.onus .on-ai-remember{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--on-g600)}
+.onus .on-ai-sumbox{display:grid;gap:10px;padding:22px 24px;border-radius:24px;background:var(--on-glass);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid var(--on-glass-line);box-shadow:var(--on-glass-sh)}
+.onus .on-ai-insight{margin:0;font-size:14.5px;line-height:1.65;color:var(--on-g700)}
+.onus .on-ai-insight b{display:block;margin-bottom:2px;font-size:12.5px;color:var(--on-accent)}
+.onus .on-ai-seniors h3{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;font-size:18px}
+.onus .on-ai-seniors h3 span{font-size:13px;font-weight:600;color:var(--on-g500)}
+.onus .on-ai-seniors ul{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:12px}
+.onus .on-ai-senior{display:flex;gap:14px;align-items:center;height:100%;padding:14px;border-radius:20px;background:var(--on-glass);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid var(--on-glass-line);box-shadow:var(--on-glass-sh);transition:transform .2s var(--on-ease),box-shadow .2s}
+.onus .on-ai-senior:hover{transform:translateY(-3px);box-shadow:var(--on-sh2)}
+.onus .on-ai-senior img{flex:0 0 64px;width:64px;height:80px;border-radius:12px;object-fit:cover}
+.onus .on-ai-senior>span{display:grid;gap:4px;min-width:0}
+.onus .on-ai-senior strong{font-size:15px;overflow-wrap:anywhere}
+.onus .on-ai-senior em{font-style:normal;font-size:13px;line-height:1.5;color:var(--on-g600)}
+.onus .on-ai-senior i{font-style:normal;font-size:13px;font-weight:700;color:var(--on-accent)}
+.onus .on-ai-road{padding:12px 14px;border-radius:14px;background:rgba(232,243,255,.7)}
+.onus .on-ai-road>b{display:flex;justify-content:space-between;gap:8px;font-size:13px;color:var(--on-accent-press)}
+.onus .on-ai-road>b em{font-style:normal;font-weight:600;color:var(--on-g600)}
+.onus .on-ai-road ol{display:grid;gap:6px;margin:8px 0 0;padding:0;list-style:none}
+.onus .on-ai-road li{display:grid;grid-template-columns:76px 1fr;gap:8px;font-size:13.5px;line-height:1.5;color:var(--on-g700)}
+.onus .on-ai-road li span{font-weight:700;color:var(--on-accent)}
+.onus .on-ai-pick-seniors{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:0;font-size:12.5px}
+.onus .on-ai-pick-seniors a{padding:4px 10px;border-radius:999px;background:var(--on-soft);font-weight:600;color:var(--on-g700)}
+.onus .on-ai-pick-seniors a:hover{background:var(--on-accent-soft);color:var(--on-accent)}
+.onus .on-ai-pick-seniors span{color:var(--on-g500)}
+@media(max-width:700px){.onus .on-ai-grid{grid-template-columns:1fr}.onus .on-ai-road li{grid-template-columns:64px 1fr}}
+
+/* 아카이브 한눈에 보기 표 */
+.onus .on-overview{margin-top:24px;overflow-x:auto;border-radius:24px;background:var(--on-glass);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid var(--on-glass-line);box-shadow:var(--on-glass-sh)}
+.onus .on-overview table{width:100%;min-width:720px;border-collapse:collapse;font-size:14px}
+.onus .on-overview th{padding:14px 16px;text-align:left;font-size:12.5px;font-weight:700;color:var(--on-g600);background:rgba(255,255,255,.5);white-space:nowrap}
+.onus .on-overview td{padding:13px 16px;border-top:1px solid rgba(60,90,170,.08);vertical-align:middle}
+.onus .on-overview tr:hover td{background:rgba(255,255,255,.55)}
+.onus .on-overview a{color:var(--on-ink);font-weight:700}
+.onus .on-overview a:hover{color:var(--on-accent)}
+.onus .on-ov-thumb{display:flex;align-items:center;gap:12px}
+.onus .on-ov-thumb img{width:38px;height:48px;border-radius:8px;object-fit:cover;flex:0 0 38px}
+.onus .on-ov-rec{color:var(--on-g500);font-size:13px}
+.onus .on-ov-rec b{color:var(--on-accent);font-weight:700}
+
+/* 작품 상세: 한눈 요약 + 준비 과정 */
+.onus .on-glance{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:8px}
+.onus .on-glance>div{display:grid;gap:4px;align-content:start;padding:18px 20px;border-radius:20px;background:var(--on-glass);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid var(--on-glass-line);box-shadow:var(--on-glass-sh)}
+.onus .on-glance dt,.onus .on-glance span.k{font-size:12.5px;font-weight:700;color:var(--on-accent)}
+.onus .on-glance dd,.onus .on-glance p{margin:0;font-size:14.5px;line-height:1.6;color:var(--on-g800);overflow-wrap:anywhere}
+.onus .on-glance ul{display:grid;gap:4px;margin:0;padding:0}
+.onus .on-glance ul li{position:relative;padding-left:14px;font-size:14px;line-height:1.55;color:var(--on-g700)}
+.onus .on-glance ul li::before{content:"";position:absolute;left:0;top:.65em;width:5px;height:5px;border-radius:50%;background:var(--on-accent)}
+.onus .on-journey{display:grid;gap:14px}
+.onus .on-journey-meta{display:flex;flex-wrap:wrap;gap:8px}
+.onus .on-journey-meta li{padding:7px 14px;border-radius:999px;background:var(--on-accent-soft);font-size:13.5px;font-weight:700;color:var(--on-accent)}
+.onus .on-journey-steps{display:grid;gap:10px;margin:0;padding:0;list-style:none;counter-reset:s}
+.onus .on-journey-steps>li{position:relative;padding:14px 16px 14px 52px;border-radius:16px;background:rgba(255,255,255,.6);counter-increment:s}
+.onus .on-journey-steps>li::before{content:counter(s);position:absolute;left:14px;top:14px;display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--on-accent);color:#fff;font-size:13px;font-weight:800}
+.onus .on-journey-steps strong{font-size:15px}
+.onus .on-journey-steps em{margin-left:8px;font-style:normal;font-size:12.5px;font-weight:700;color:var(--on-accent)}
+.onus .on-journey-steps p{margin:4px 0 0;font-size:14px;line-height:1.6;color:var(--on-g700)}
+
+/* 보정: 파란 강조 패널은 유리 규칙보다 우선하고 안의 글씨는 흰색으로 */
+.onus .on-panel.on-panel-accent{background:linear-gradient(135deg,#1b64da,#3182f6 70%,#6cb0ff);border-color:transparent;color:#fff;box-shadow:0 24px 50px -24px rgba(27,100,218,.7)}
+.onus .on-panel-accent :is(h2,h3,p,li,strong){color:#fff}
+.onus .on-panel-accent .on-eyebrow{color:rgba(255,255,255,.85)}
+.onus .on-panel-accent .on-small{color:rgba(255,255,255,.8)}
+.onus .on-panel-accent .on-pill{background:rgba(255,255,255,.22);color:#fff}
+.onus .on-ov-rec{white-space:nowrap}
+.onus .on-glance .k small{font-weight:500;color:var(--on-g500)}
+
+/* 출품 준비 체크리스트 · AI 보조 문구 · 소개 페이지 */
+.onus .on-prep{margin-top:20px;padding:22px 24px;border-radius:24px;background:var(--on-glass);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid var(--on-glass-line);box-shadow:var(--on-glass-sh)}
+.onus .on-prep-head{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:14px}
+.onus .on-prep-head em{margin-left:auto;font-style:normal;font-size:13px;font-weight:600;color:var(--on-accent)}
+.onus .on-prep-bar{flex:1 1 140px;max-width:260px;height:8px;border-radius:99px;background:rgba(60,90,170,.12);overflow:hidden}
+.onus .on-prep-bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#6cb0ff,#3182f6);transition:width .3s var(--on-ease)}
+.onus .on-prep ul{display:grid;gap:4px;margin:0 0 10px}
+.onus .on-prep .on-check{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border-radius:12px;font-size:15px;line-height:1.5;cursor:pointer}
+.onus .on-prep .on-check:hover{background:rgba(255,255,255,.7)}
+.onus .on-prep .on-check input{margin-top:4px;width:18px;height:18px;accent-color:var(--on-accent)}
+.onus .on-prep .on-check span[data-done]{color:var(--on-g500);text-decoration:line-through}
+.onus .on-ai-dur{width:fit-content;padding:2px 10px;border-radius:99px;background:var(--on-accent-soft);font-size:12px;font-weight:700;color:var(--on-accent)}
+.onus .on-ai-pace{margin:6px 0 0;font-size:13px;font-weight:600;line-height:1.5;color:var(--on-g800)}
+.onus .on-about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:22px}
+.onus .on-about-card{display:grid;gap:8px;align-content:start;padding:24px;border-radius:24px;background:var(--on-glass);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid var(--on-glass-line);box-shadow:var(--on-glass-sh)}
+.onus .on-about-card h3{font-size:18px}
+.onus .on-about-card p,.onus .on-about-card li{margin:0;font-size:14.5px;line-height:1.65;color:var(--on-g700)}
+.onus .on-about-card ul{display:grid;gap:6px}
+.onus .on-about-card li{position:relative;padding-left:14px}
+.onus .on-about-card li::before{content:"";position:absolute;left:0;top:.7em;width:5px;height:5px;border-radius:50%;background:var(--on-accent)}
+.onus .on-about-nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:22px}
+.onus .on-about-nums li{padding:18px 20px;border-radius:20px;background:var(--on-glass);border:1px solid var(--on-glass-line);box-shadow:var(--on-glass-sh)}
+.onus .on-about-nums b{display:block;font-size:30px;font-weight:800;letter-spacing:-.04em;color:var(--on-ink)}
+.onus .on-about-nums span{font-size:13px;font-weight:600;color:var(--on-g600)}
+.onus .on-status-table{width:100%;margin-top:18px;border-collapse:collapse;font-size:14.5px}
+.onus .on-status-table th,.onus .on-status-table td{padding:12px 14px;text-align:left;border-top:1px solid rgba(60,90,170,.1);vertical-align:top}
+.onus .on-status-table th{width:150px;font-weight:700;white-space:nowrap}
+.onus .on-tag-ok{color:var(--on-green);font-weight:700}
+.onus .on-tag-demo{color:#b7791f;font-weight:700}
+.onus .on-tag-no{color:var(--on-red);font-weight:700}
+.onus .on-footer-links{display:flex;gap:18px;flex-wrap:wrap}

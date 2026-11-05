@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 import PageHead from '@/components/onus/PageHead';
 import Reveal from '@/components/onus/Reveal';
 import WorkGallery, { type GalleryGroup } from '@/components/onus/WorkGallery';
-import { allContests, groupedByEdition, stats } from '@/lib/onus/data';
+import ArchiveOverview from '@/components/onus/ArchiveOverview';
+import { allContests, groupedByEdition, sortedWorks, stats } from '@/lib/onus/data';
 
 export const metadata: Metadata = { title: '수상 아카이브', description: '선배들의 실제 출품작을 공모전별로 모아 봅니다.' };
 
@@ -28,6 +29,16 @@ export default function ArchivePage() {
    </section>
 
    <section className="on-section on-section-tight">
+    <Reveal>
+     <p className="on-eyebrow">AT A GLANCE</p>
+     <h2>한눈에 비교해 보기</h2>
+     <p className="on-section-lead">작품을 하나씩 열어 보지 않아도 대회·수상·분야·준비 기록을 한 표에서 볼 수 있어요. 이름을 누르면 상세 페이지로 이동해요.</p>
+    </Reveal>
+    <ArchiveOverview works={sortedWorks()} />
+   </section>
+
+   <section className="on-section on-section-tight">
+    <Reveal><p className="on-eyebrow">BY CONTEST</p><h2>대회별로 모아 보기</h2></Reveal>
     <Reveal><p className="on-section-lead">작품을 누르면 실제 출품한 보드와 대회 성격과의 연결, 코멘트를 볼 수 있어요. 대회 이름 옆의 &ldquo;대회 성격 보기&rdquo;에서는 그 대회가 어떤 곳인지 확인할 수 있어요.</p></Reveal>
     <WorkGallery groups={groups} />
    </section>
