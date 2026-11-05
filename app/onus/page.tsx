@@ -91,6 +91,7 @@ export default function OnusHome() {
      <p className="on-section-lead">전공과 관심사, 경험을 적으면 지금 접수 중인 공모전 중에서 참가 자격까지 따져 추천해 드려요.</p>
     </Reveal>
     <AiRecommend today={today} />
+    <p className="on-ai-more"><Link className="on-more" href="/onus/recommend">AI 추천 전체 화면으로 보기 →</Link></p>
    </section>
 
    <section className="on-section">
@@ -195,7 +196,7 @@ export default function OnusHome() {
      <h2>다음 수상작의 주인공은 당신이에요</h2>
      <p>관심 분야를 적으면 AI가 맞는 공모전을 골라 줘요. 마음에 드는 공모전은 도전 보드에 담고, 선배의 작품에서 힌트를 얻어 보세요.</p>
      <div className="on-hero3d-cta">
-      <a className="primary" href="#top-ai">AI 추천 받기 →</a>
+      <Link className="primary" href="/onus/recommend">AI 추천 받기 →</Link>
       <Link className="ghost" href="/onus/board">나의 도전 보드</Link>
      </div>
     </section>

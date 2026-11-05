@@ -248,3 +248,135 @@
 /* 레이아웃 보정: 벤토 래퍼가 칸을 가득 채우고, 쇼케이스 이미지는 높이 속성을 무시하고 비율을 따릅니다 */
 .onus .on-tiles>li>.on-reveal,.onus .on-tiles>li .on-tilt{width:100%}
 .onus .on-show img{height:auto}
+
+/* =====================================================================
+   2차 다듬기: 글씨 크기 정리 · 투박한 선 완화 · 머리말 장식 · AI 추천 페이지
+   (DESIGN.md 타이포 스케일: 페이지 제목 26~38px, 섹션 제목 22~30px)
+   ===================================================================== */
+.onus h2{font-size:clamp(22px,2.6vw,30px);line-height:1.32}
+.onus .on-pagehead h1,.onus .on-contest-head h1{font-size:clamp(26px,3.4vw,38px);letter-spacing:-.04em;line-height:1.25}
+.onus .on-detail-info h1{font-size:clamp(26px,3.4vw,42px);line-height:1.2}
+.onus .on-page-title{font-size:clamp(24px,3vw,34px);line-height:1.25}
+.onus .on-group-head h2{font-size:clamp(20px,2.3vw,26px)}
+.onus .on-panel h2{font-size:clamp(20px,2.2vw,26px)}
+.onus .on-word-k{font-size:clamp(36px,5vw,60px)}
+.onus .on-word strong{font-size:clamp(15px,1.5vw,18px)}
+.onus .on-stat-n{font-size:clamp(26px,3vw,36px)}
+.onus .on-stats strong{font-size:clamp(20px,2.2vw,28px)}
+.onus .on-hero3d h1{font-size:clamp(64px,10.5vw,136px);letter-spacing:-.065em}
+.onus .on-hero3d-line{font-size:clamp(19px,2.2vw,26px)}
+.onus .on-hero3d-sub{font-size:16px}
+.onus .on-cta-band h2{font-size:clamp(22px,3vw,34px)}
+.onus .on-section-lead,.onus .on-pagehead-lead,.onus .on-detail-sub{font-size:16px;line-height:1.7;color:var(--on-g600)}
+.onus .on-section{padding-top:clamp(48px,7vw,88px)}
+.onus .on-section-tight{padding-top:24px}
+.onus .on-pagehead-inner{padding:clamp(36px,5vw,64px) var(--on-pad) clamp(28px,4vw,44px)}
+
+/* 투박한 검은 선을 부드러운 면으로 */
+.onus .on-group-head{border-bottom:1px solid var(--on-line)}
+.onus .on-facts{border-top:1px solid var(--on-line)}
+.onus .on-editions li{border:0;background:var(--on-accent-soft);color:var(--on-accent);font-weight:700}
+.onus .on-stats{border-top:0;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;padding-top:28px}
+.onus .on-stats>div{padding:20px 22px;border-radius:20px;background:var(--on-alt)}
+.onus .on-stats-awards{grid-column:1/-1;justify-content:flex-start}
+.onus .on-stats-awards li{border:0;background:var(--on-soft);color:var(--on-g700)}
+
+/* 머리말: 아이콘 칩 + 장식 오브젝트 */
+.onus .on-pagehead{position:relative;overflow:hidden}
+.onus .on-pagehead-inner{position:relative;z-index:1}
+.onus .on-ph-eyebrow{display:inline-flex;align-items:center;gap:8px;margin-bottom:14px}
+.onus .on-ph-ic{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:#fff;color:var(--on-accent);box-shadow:var(--on-sh1)}
+.onus .on-ph-ic svg{width:18px;height:18px}
+.onus .on-ph-deco{position:absolute;right:max(var(--on-pad),calc((100vw - var(--on-max)) / 2 + var(--on-pad)));top:50%;width:200px;height:160px;transform:translateY(-50%);pointer-events:none}
+.onus .on-ph-deco i{position:absolute;border-radius:50%;background:radial-gradient(circle at 30% 28%,#fff,#9cc7ff 45%,#3182f6);box-shadow:0 18px 36px -14px rgba(49,130,246,.65);animation:on-bob 7s ease-in-out infinite}
+.onus .on-ph-deco i:nth-child(1){width:96px;height:96px;right:10px;top:6px}
+.onus .on-ph-deco i:nth-child(2){width:46px;height:46px;right:120px;top:78px;animation-delay:-2s;opacity:.9}
+.onus .on-ph-deco i:nth-child(3){width:24px;height:24px;right:0;top:114px;animation-delay:-4s;opacity:.8}
+@keyframes on-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@media(max-width:800px){.onus .on-ph-deco{display:none}}
+@media(prefers-reduced-motion:reduce){.onus .on-ph-deco i{animation:none}}
+
+/* 공모전·커뮤니티 머리말을 카드형으로 */
+.onus .on-contest-head{margin-top:20px;padding:clamp(24px,3.4vw,40px);border-radius:28px;background:linear-gradient(135deg,var(--on-accent-soft) 0%,#fff 75%);box-shadow:var(--on-sh1)}
+
+/* 헤더 AI 메뉴 */
+.onus .on-nav .on-nav-ai{color:var(--on-accent);font-weight:700}
+.onus .on-nav .on-nav-ai span{display:inline-block;margin-right:2px;animation:on-twinkle 2.4s ease-in-out infinite}
+@keyframes on-twinkle{0%,100%{transform:scale(1) rotate(0)}50%{transform:scale(1.25) rotate(12deg)}}
+.onus .on-ai-more{margin-top:14px}
+
+/* AI 추천 페이지 */
+.onus .on-narrow-wide{max-width:960px}
+.onus .on-steps2{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:28px 0 20px}
+.onus .on-steps2>li{display:flex}
+.onus .on-steps2 .on-reveal{width:100%}
+.onus .on-step2{position:relative;height:100%;display:grid;gap:8px;align-content:start;padding:26px 24px;border-radius:24px;background:var(--on-alt)}
+.onus .on-step2-n{position:absolute;top:18px;right:22px;font-size:40px;font-weight:800;letter-spacing:-.05em;color:#e5e8eb}
+.onus .on-step2-ic{display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:var(--on-accent-soft);color:var(--on-accent);margin-bottom:6px}
+.onus .on-step2 strong{font-size:18px;font-weight:700}
+.onus .on-step2 p{margin:0;font-size:14.5px;line-height:1.65;color:var(--on-g600)}
+.onus .on-note-card{padding:24px 28px;border-radius:24px;background:#fff;box-shadow:var(--on-sh1)}
+.onus .on-note-card strong{font-size:16px}
+.onus .on-note-card ul{margin-top:10px;display:grid;gap:8px}
+.onus .on-note-card li{position:relative;padding-left:16px;font-size:14.5px;line-height:1.65;color:var(--on-g700)}
+.onus .on-note-card li::before{content:"";position:absolute;left:0;top:.72em;width:6px;height:6px;border-radius:50%;background:var(--on-accent)}
+@media(max-width:800px){.onus .on-steps2{grid-template-columns:1fr}}
+
+/* 마무리 보정 */
+.onus .on-steps2{padding:0;list-style:none}
+.onus .on-story-text{font-size:clamp(16px,1.6vw,19px);line-height:1.8;max-width:40em}
+
+/* =====================================================================
+   유리(글래스) 배경: 연한 파랑·라벤더·민트 색감 + 반투명 카드
+   ===================================================================== */
+.onus{position:relative;isolation:isolate;background:#f3f6fd;
+ --on-glass:rgba(255,255,255,.58);--on-glass-strong:rgba(255,255,255,.76);--on-glass-line:rgba(255,255,255,.85);
+ --on-glass-sh:0 8px 28px -12px rgba(60,90,170,.18),0 1px 0 rgba(255,255,255,.7) inset}
+.onus::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+ background:
+  radial-gradient(48vw 42vw at 8% 6%,rgba(140,190,255,.48),transparent 62%),
+  radial-gradient(44vw 40vw at 96% 18%,rgba(186,160,255,.38),transparent 60%),
+  radial-gradient(52vw 44vw at 82% 92%,rgba(120,220,210,.34),transparent 62%),
+  radial-gradient(46vw 40vw at 4% 88%,rgba(255,196,214,.30),transparent 60%),
+  linear-gradient(180deg,#f4f8ff 0%,#f1f4fc 100%)}
+
+/* 헤더 · 섹션 · 푸터 */
+.onus .on-header{background:rgba(255,255,255,.55);border-bottom:1px solid rgba(255,255,255,.7);box-shadow:0 1px 0 rgba(60,90,170,.06)}
+.onus .on-section-alt,.onus .on-story{background:rgba(255,255,255,.4);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.onus .on-pagehead{background:linear-gradient(180deg,rgba(255,255,255,.55),rgba(255,255,255,0))}
+.onus .on-footer{border-top:1px solid rgba(60,90,170,.1)}
+.onus .on-filter{background:rgba(244,248,255,.72)}
+
+/* 카드 · 박스: 반투명 유리 */
+.onus :is(.on-contest-card,.on-post,.on-ext,.on-soon,.on-news,.on-finder-card,.on-board-item,.on-verif-item,.on-admin-item,.on-comment,.on-mini,.on-ai-card,.on-note-card,.on-word){
+ background:var(--on-glass);-webkit-backdrop-filter:blur(14px) saturate(1.3);backdrop-filter:blur(14px) saturate(1.3);
+ box-shadow:var(--on-glass-sh);border:1px solid var(--on-glass-line)}
+.onus .on-section-alt :is(.on-news,.on-post,.on-contest-card){box-shadow:var(--on-glass-sh)}
+.onus :is(.on-contest-card,.on-post,.on-ext,.on-soon,.on-news):hover{background:var(--on-glass-strong);box-shadow:0 18px 40px -16px rgba(60,90,170,.3),0 1px 0 rgba(255,255,255,.8) inset}
+.onus :is(.on-panel,.on-status-box,.on-step2,.on-stats>div){background:var(--on-glass);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid var(--on-glass-line);box-shadow:var(--on-glass-sh)}
+.onus .on-panel-accent{background:linear-gradient(135deg,rgba(27,100,218,.92),rgba(49,130,246,.9));border-color:transparent}
+.onus .on-panel-empty,.onus .on-status-soon{background:rgba(255,255,255,.35);border:1px dashed rgba(60,90,170,.2)}
+.onus .on-empty{background:var(--on-glass);border:1px solid var(--on-glass-line)}
+.onus .on-tile{background:var(--on-glass);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid var(--on-glass-line);box-shadow:var(--on-glass-sh)}
+.onus .on-tile:hover{background:var(--on-glass-strong)}
+.onus .on-tilt .on-tile{background:var(--on-glass)}
+.onus .on-tiles>li:first-child .on-tile,.onus .on-tiles>li:first-child .on-tilt .on-tile{background:linear-gradient(150deg,rgba(27,100,218,.95),rgba(49,130,246,.92) 55%,rgba(108,176,255,.9));border-color:rgba(255,255,255,.25)}
+.onus .on-ai-form{background:linear-gradient(160deg,rgba(255,255,255,.7),rgba(235,244,255,.5));-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:1px solid var(--on-glass-line);box-shadow:var(--on-glass-sh)}
+.onus .on-ai-form textarea{background:rgba(255,255,255,.75)}
+.onus .on-ai-reason{background:rgba(255,255,255,.55)}
+.onus .on-contest-head{background:linear-gradient(135deg,rgba(220,235,255,.7),rgba(255,255,255,.5) 75%);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid var(--on-glass-line)}
+
+/* 입력 · 칩 */
+.onus .on-search input,.onus .on-form :is(input,textarea,select),.onus .on-admin-reason input{background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.85);box-shadow:0 1px 0 rgba(60,90,170,.06) inset}
+.onus .on-search input:focus,.onus .on-form :is(input,textarea,select):focus,.onus .on-admin-reason input:focus{background:#fff;border-color:var(--on-accent)}
+.onus .on-chips button,.onus .on-tabs a,.onus .on-sort select{background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.85);box-shadow:0 1px 2px rgba(60,90,170,.06)}
+.onus .on-chips button:hover,.onus .on-tabs a:hover{background:rgba(255,255,255,.9)}
+.onus .on-chips button[aria-pressed=true],.onus .on-tabs a[aria-current="page"]{background:var(--on-ink);border-color:var(--on-ink)}
+.onus .on-ticker a{background:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.85);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.onus .on-show{background:var(--on-glass)}
+
+/* 유리 효과를 지원하지 않는 환경에서는 조금 더 불투명하게 */
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+ .onus{--on-glass:rgba(255,255,255,.9);--on-glass-strong:#fff}
+ .onus .on-section-alt,.onus .on-story{background:rgba(255,255,255,.7)}
+}

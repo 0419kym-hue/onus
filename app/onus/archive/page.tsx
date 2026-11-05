@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import PageHead from '@/components/onus/PageHead';
 import Reveal from '@/components/onus/Reveal';
 import WorkGallery, { type GalleryGroup } from '@/components/onus/WorkGallery';
 import { allContests, groupedByEdition, stats } from '@/lib/onus/data';
@@ -18,13 +19,7 @@ export default function ArchivePage() {
 
  return (
   <main id="main">
-   <header className="on-pagehead">
-    <div className="on-pagehead-inner">
-     <p className="on-eyebrow">ARCHIVE</p>
-     <h1>수상 아카이브</h1>
-     <p className="on-pagehead-lead">선배들의 실제 출품작을 공모전별로 모았어요. 공모전을 먼저 고르고, 그 대회에 나간 작품을 살펴보세요.</p>
-    </div>
-   </header>
+   <PageHead eyebrow="ARCHIVE" title="수상 아카이브" lead="선배들의 실제 출품작을 공모전별로 모았어요. 공모전을 먼저 고르고, 그 대회에 나간 작품을 살펴보세요." icon="archive" />
 
    <section className="on-stats" aria-label="아카이브 현황">
     <div><strong>{s.total}</strong><span>수상·선정 기록</span></div>

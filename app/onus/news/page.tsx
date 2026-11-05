@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import PageHead from '@/components/onus/PageHead';
 import NewsList from '@/components/onus/NewsList';
 import { NEWS_CHECKED_AT, NEWS_TOPICS, sortedNews } from '@/lib/onus/news';
 
@@ -8,13 +9,7 @@ export default function NewsPage() {
  const items = sortedNews();
  return (
   <main id="main">
-   <header className="on-pagehead">
-    <div className="on-pagehead-inner">
-     <p className="on-eyebrow">NEWS</p>
-     <h1>한양여대 소식</h1>
-     <p className="on-pagehead-lead">한양여자대학교의 공모전·대회와 관련된 기사를 모았어요. 제목을 누르면 원문 기사로 이동해요.</p>
-    </div>
-   </header>
+   <PageHead eyebrow="NEWS" title="한양여대 소식" lead="한양여자대학교의 공모전·대회와 관련된 기사를 모았어요. 제목을 누르면 원문 기사로 이동해요." icon="news" />
    <section className="on-section on-section-tight">
     {items.length === 0
      ? <div className="on-empty"><strong>아직 모은 기사가 없어요.</strong><p>기사를 찾는 대로 이곳에 채워질 예정이에요.</p></div>

@@ -8,6 +8,7 @@ export default function OnusHeader() {
  const inNews = pathname.startsWith('/onus/news');
  const inBoard = pathname.startsWith('/onus/board');
  const inContests = pathname.startsWith('/onus/contests');
+ const inAi = pathname.startsWith('/onus/recommend');
  const inCommunity = pathname.startsWith('/onus/community');
  return (
   <header className="on-header">
@@ -20,6 +21,7 @@ export default function OnusHeader() {
    <nav className="on-nav" aria-label="ON:US 메뉴">
     <Link href="/onus/archive" aria-current={inArchive ? 'page' : undefined}>수상 아카이브</Link>
     <Link href="/onus/contests" aria-current={inContests ? 'page' : undefined}>공모전</Link>
+    <Link href="/onus/recommend" className="on-nav-ai" aria-current={inAi ? 'page' : undefined}><span aria-hidden="true">✦</span> AI 추천</Link>
     <Link href="/onus/news" aria-current={inNews ? 'page' : undefined}>소식</Link>
     <Link href="/onus/board" aria-current={inBoard ? 'page' : undefined}>도전 보드</Link>
     <Link href="/onus/community" aria-current={inCommunity ? 'page' : undefined}>커뮤니티</Link>
