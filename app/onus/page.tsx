@@ -5,7 +5,7 @@ import Icon, { type IconName } from '@/components/onus/Icons';
 import CountUp from '@/components/onus/CountUp';
 import { aiEnabled } from '@/lib/onus/flags';
 import HeroScene from '@/components/onus/HeroScene';
-import Mascot3D from '@/components/onus/Mascot3D';
+import MascotTrio from '@/components/onus/MascotTrio';
 import Reveal from '@/components/onus/Reveal';
 import Tilt from '@/components/onus/Tilt';
 import { AWARD_RANK } from '@/lib/onus/awards';
@@ -41,7 +41,7 @@ export default function OnusHome() {
   <main id="main">
    <section className="on-hero3d">
     <HeroScene />
-    <Mascot3D className="on-hero-mascot" src="/onus/brand/hywu-crew.webp" alt="한양여자대학교 마스코트 하이유 크루(나리, 나래, 빛나리)" width={262} height={239} />
+    <MascotTrio className="on-hero-trio" />
     <div className="on-hero3d-inner">
      <p className="on-hero3d-chip"><img src="/onus/brand/hywoman-mark.webp" alt="" width={26} height={26} />한양여자대학교 공모전·대회 플랫폼</p>
      <h1 aria-label="ON:US">ON<span>:</span>US</h1>

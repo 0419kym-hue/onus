@@ -643,8 +643,15 @@
 .onus .on-m3d-shadow{position:absolute;left:14%;right:14%;bottom:-18px;height:18px;border-radius:50%;background:radial-gradient(closest-side,rgba(30,60,140,.35),transparent);animation:on-m3d-shadow 5.5s ease-in-out infinite}
 @keyframes on-m3d-float{0%,100%{transform:translateY(0) rotateZ(-1.5deg)}50%{transform:translateY(-12px) rotateZ(1.5deg)}}
 @keyframes on-m3d-shadow{0%,100%{transform:scaleX(1);opacity:.9}50%{transform:scaleX(.82);opacity:.55}}
-.onus .on-ph-crew.on-m3d{position:absolute;right:max(var(--on-pad),calc((100vw - var(--on-max)) / 2 + var(--on-pad)));top:50%;width:230px;height:auto;transform:translateY(-50%);filter:none}
-.onus .on-hero-mascot{position:absolute;z-index:2;right:max(var(--on-pad),calc((100vw - var(--on-max)) / 2 + var(--on-pad)));bottom:15%;width:clamp(200px,24vw,340px)}
-.onus .on-hero-mascot .on-m3d-back{filter:brightness(.5) saturate(1.2) hue-rotate(-8deg)}
-@media(max-width:800px){.onus .on-hero-mascot{display:none}.onus .on-ph-crew.on-m3d{display:none}}
 @media(prefers-reduced-motion:reduce){.onus .on-m3d-float,.onus .on-m3d-shadow{animation:none}}
+
+/* 마스코트 세 명: 서로 떨어져서 각자 떠다님 */
+.onus .on-trio{position:relative;pointer-events:none;aspect-ratio:1.12}
+.onus .on-trio .on-m3d{position:absolute;width:auto}
+.onus .on-trio-a{left:27%;top:0;width:42%!important;z-index:1}
+.onus .on-trio-b{left:0;top:56%;width:32%!important;z-index:2}
+.onus .on-trio-c{right:0;top:40%;width:45%!important;z-index:3}
+.onus .on-hero-trio{position:absolute;z-index:2;right:max(var(--on-pad),calc((100vw - var(--on-max)) / 2 + var(--on-pad)));bottom:11%;width:clamp(320px,40vw,560px)}
+.onus .on-hero-trio .on-m3d-back{filter:brightness(.5) saturate(1.2)}
+.onus .on-ph-crew.on-trio{position:absolute;right:max(var(--on-pad),calc((100vw - var(--on-max)) / 2 + var(--on-pad)));top:50%;width:270px;transform:translateY(-50%);filter:none}
+@media(max-width:800px){.onus .on-hero-trio{width:210px;right:10px;bottom:auto;top:92px}.onus .on-ph-crew.on-trio{display:none}}
