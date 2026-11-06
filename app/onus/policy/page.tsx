@@ -46,6 +46,18 @@ export default function PolicyPage() {
    </section>
 
    <section className="on-section">
+    <Reveal><p className="on-eyebrow">SUBMIT</p><h2>수상작 올리기와 수상증명서</h2></Reveal>
+    <div className="on-note-card" style={{ marginTop: 14 }}>
+     <ul>
+      <li>누구나 <Link className="on-inline-link" href="/onus/submit">수상작 올리기</Link>에서 작품 이미지·공모전 정보와 함께 <strong>수상증명서</strong>(이미지·PDF, 5MB 이하)를 올릴 수 있어요. 증명서는 필수예요.</li>
+      <li>증명서는 비공개 저장소에만 저장되고 운영자만 열 수 있어요. 올릴 때 &ldquo;수상 확인에만 쓰고 공개하지 않는다&rdquo;는 안내에 동의해야 하고, 승인·반려가 저장되면 파일을 삭제해요.</li>
+      <li>운영자가 증명서와 작품명·대회명·등급이 맞는지, 작품 이미지에 개인정보가 없는지 확인한 작품만 수상 아카이브에 보여요. 닉네임만 공개되고 이름·학번·연락처는 받지 않아요.</li>
+      <li>한계: 서류 확인이며 본인 확인이 아니에요. 증명서 위조 여부는 판별하지 못하고, 다른 사람의 상장을 올리는 것은 이용 약속 위반으로 보고 반려·삭제해요.</li>
+     </ul>
+    </div>
+   </section>
+
+   <section className="on-section">
     <Reveal><p className="on-eyebrow">COMMUNITY</p><h2>익명 글·댓글, 악성 이용 대응</h2></Reveal>
     <table className="on-status-table">
      <tbody>

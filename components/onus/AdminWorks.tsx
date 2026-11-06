@@ -2,7 +2,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { getAdminClient } from '@/lib/onus/admin-client';
 
-type Pending = { id: string; title: string; contest_title: string; contest_year: number; award: string; fields: string | null; description: string; prep_note: string | null; major: string | null; nickname: string; image_path: string | null; created_at: string };
+type Pending = { id: string; title: string; contest_title: string; contest_year: number; award: string; fields: string | null; description: string; prep_note: string | null; major: string | null; nickname: string; image_path: string | null; cert_path: string | null; created_at: string };
 
 function Item({ p, onDone }: { p: Pending; onDone: () => void }) {
  const sb = getAdminClient()!;
@@ -11,16 +11,23 @@ function Item({ p, onDone }: { p: Pending; onDone: () => void }) {
  const [msg, setMsg] = useState<string | null>(null);
  const url = p.image_path ? sb.storage.from('onus-works').getPublicUrl(p.image_path).data.publicUrl : null;
 
+ async function openCert() {
+  if (!p.cert_path) return;
+  const { data, error } = await sb.storage.from('onus-evidence').createSignedUrl(p.cert_path, 300);
+  if (error || !data) { setMsg('수상증명서를 열지 못했어요.'); return; }
+  window.open(data.signedUrl, '_blank', 'noopener,noreferrer');
+ }
  async function decide(approve: boolean) {
   if (!approve && !reason.trim()) { setMsg('반려 사유를 적어 주세요.'); return; }
   setBusy(true); setMsg(null);
   const { data, error } = await sb.rpc('onus_admin_work_decide', { p_id: p.id, p_approve: approve, p_reason: reason.trim() || null });
   if (error) { setBusy(false); setMsg('처리하지 못했어요. 운영자로 로그인했는지 확인해 주세요.'); return; }
-  // 반려하면 업로드된 이미지를 저장소에서 지웁니다.
-  if (!approve && typeof data === 'string') {
-   const rm = await sb.storage.from('onus-works').remove([data]);
-   if (rm.error) setMsg('결정은 저장됐지만 이미지 삭제에 실패했어요. 저장소에서 직접 지워 주세요.');
-  }
+  // 결정이 저장된 뒤 수상증명서(항상)와 반려한 작품 이미지를 저장소에서 지웁니다.
+  const row = Array.isArray(data) ? (data[0] as { image_path: string | null; cert_path: string | null } | undefined) : undefined;
+  const fail: string[] = [];
+  if (row?.cert_path) { const rm = await sb.storage.from('onus-evidence').remove([row.cert_path]); if (rm.error) fail.push('수상증명서'); }
+  if (row?.image_path) { const rm = await sb.storage.from('onus-works').remove([row.image_path]); if (rm.error) fail.push('이미지'); }
+  if (fail.length) setMsg(`결정은 저장됐지만 ${fail.join('·')} 삭제에 실패했어요. 저장소에서 직접 지워 주세요.`);
   setBusy(false); onDone();
  }
 
@@ -31,7 +38,8 @@ function Item({ p, onDone }: { p: Pending; onDone: () => void }) {
     <div className="on-comment-head"><strong>{p.title}</strong><span className="on-pill on-pill-soft">{p.contest_year} · {p.award}</span></div>
     <p className="on-small">{p.contest_title}{p.fields ? ` · ${p.fields}` : ''}{p.prep_note ? ` · 준비 ${p.prep_note}` : ''}{p.major ? ` · ${p.major}` : ''} · 닉네임 {p.nickname}</p>
     <p>{p.description}</p>
-    <p className="on-small">이미지를 열어 개인정보(이름·학번·연락처)가 없는지, 제출한 내용과 맞는지 확인하고 승인하세요.</p>
+    <p className="on-small">수상증명서를 열어 수상 사실과 작품명·대회명·등급이 맞는지, 작품 이미지에 개인정보(이름·학번·연락처)가 없는지 확인하고 승인하세요. 증명서는 결정 후 자동으로 삭제돼요.</p>
+    <div className="on-cta"><button type="button" className="on-btn" onClick={openCert} disabled={!p.cert_path}>수상증명서 열기</button></div>
     <div className="on-cta"><button type="button" className="on-btn on-btn-primary" onClick={() => decide(true)} disabled={busy}>승인</button></div>
     <label className="on-admin-reason">반려 사유<input value={reason} onChange={(e) => setReason(e.target.value)} maxLength={300} placeholder="예: 이미지에 개인정보가 보여요 / 작품과 무관해요" /></label>
     <button type="button" className="on-btn" onClick={() => decide(false)} disabled={busy}>반려</button>

@@ -6,6 +6,7 @@ import { FIELD_GROUPS } from '@/lib/onus/fields';
 
 const MAX = 5 * 1024 * 1024;
 const EXT: Record<string, string> = { 'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp' };
+const CERT_EXT: Record<string, string> = { ...EXT, 'application/pdf': 'pdf' };
 const AWARDS = ['대상', '최우수상', '금상', '은상', '동상', '특선', '장려상', '입선', 'TOP TEN OVERALL'];
 const PREP = ['', '2일 이내', '약 3~4일', '약 1주', '약 2주', '약 한 달', '한 달 이상'];
 const STORE = 'onus:work-subs';
@@ -26,7 +27,9 @@ export default function SubmitWorkForm() {
  const [major, setMajor] = useState('');
  const [nick, setNick] = useState('');
  const [file, setFile] = useState<File | null>(null);
+ const [cert, setCert] = useState<File | null>(null);
  const [agree, setAgree] = useState(false);
+ const [agreeCert, setAgreeCert] = useState(false);
  const [busy, setBusy] = useState(false);
  const [msg, setMsg] = useState<{ ok: boolean; text: string } | null>(null);
  const [stats, setStats] = useState<Record<string, Stat>>({});
@@ -51,6 +54,8 @@ export default function SubmitWorkForm() {
   if (!sb) { setMsg({ ok: false, text: 'Supabase 연결 설정이 없어 올릴 수 없어요.' }); return; }
   if (!file || !EXT[file.type]) { setMsg({ ok: false, text: '작품 이미지는 JPG·PNG·WEBP만 올릴 수 있어요.' }); return; }
   if (file.size > MAX) { setMsg({ ok: false, text: '이미지는 5MB 이하여야 해요.' }); return; }
+  if (!cert || !CERT_EXT[cert.type]) { setMsg({ ok: false, text: '수상증명서는 JPG·PNG·WEBP 또는 PDF만 올릴 수 있어요.' }); return; }
+  if (cert.size > MAX) { setMsg({ ok: false, text: '수상증명서는 5MB 이하여야 해요.' }); return; }
   setBusy(true);
   const id = newId(); const key = newKey();
   const path = `${id}/${newKey().slice(0, 12)}.${EXT[file.type]}`;
@@ -60,9 +65,16 @@ export default function SubmitWorkForm() {
    setMsg({ ok: false, text: /not found|bucket/i.test(up.error.message) ? '작품 저장소가 아직 준비되지 않았어요(DB 마이그레이션 적용 필요).' : '이미지를 올리지 못했어요. 잠시 뒤 다시 시도해 주세요.' });
    return;
   }
+  const certPath = `${id}/cert-${newKey().slice(0, 12)}.${CERT_EXT[cert.type]}`;
+  const cu = await sb.storage.from('onus-evidence').upload(certPath, cert, { contentType: cert.type, upsert: false });
+  if (cu.error) {
+   setBusy(false);
+   setMsg({ ok: false, text: '수상증명서를 올리지 못했어요. 잠시 뒤 다시 시도해 주세요.' });
+   return;
+  }
   const ins = await sb.from('onus_work_submissions').insert({
    id, title: title.trim(), contest_title: contest.trim(), contest_year: Number(year), award: award.trim(), fields: fields.join(', ') || null,
-   description: desc.trim(), prep_note: prep || null, major: major.trim() || null, nickname: nick.trim(), image_path: path, consent: agree, claim_key: key,
+   description: desc.trim(), prep_note: prep || null, major: major.trim() || null, nickname: nick.trim(), image_path: path, cert_path: certPath, consent: agree && agreeCert, claim_key: key,
   });
   setBusy(false);
   if (ins.error) {
@@ -72,8 +84,8 @@ export default function SubmitWorkForm() {
   const next = [{ id, key, title: title.trim() }, ...readMine()].slice(0, 20);
   try { localStorage.setItem(STORE, JSON.stringify(next)); } catch { /* 저장이 막힌 브라우저에서는 건너뜀 */ }
   setMine(next); setStats((s) => ({ ...s, [id]: { status: 'pending', reject_reason: null, title: title.trim() } }));
-  setTitle(''); setContest(''); setAward(''); setFields([]); setDesc(''); setPrep(''); setMajor(''); setFile(null); setAgree(false);
-  const el = document.getElementById('onus-work-img') as HTMLInputElement | null; if (el) el.value = '';
+  setTitle(''); setContest(''); setAward(''); setFields([]); setDesc(''); setPrep(''); setMajor(''); setFile(null); setCert(null); setAgree(false); setAgreeCert(false);
+  for (const i of ['onus-work-img', 'onus-work-cert']) { const el = document.getElementById(i) as HTMLInputElement | null; if (el) el.value = ''; }
   setMsg({ ok: true, text: '올렸어요! 운영자가 확인하고 승인하면 수상 아카이브에 보여요. 이 브라우저에서 아래 "내가 올린 작품"으로 상태를 볼 수 있어요.' });
  }
 
@@ -84,7 +96,8 @@ export default function SubmitWorkForm() {
     <ul className="on-list">
      <li>본인이 만든 <strong>수상·출품작</strong>의 보드나 대표 이미지를 올려 주세요.</li>
      <li>운영자가 확인해서 승인한 작품만 수상 아카이브에 보여요.</li>
-     <li><strong>이름·학번·연락처</strong>는 적지 말고, 이미지 안에 있다면 가려 주세요.</li>
+     <li>본인 수상을 확인할 <strong>수상증명서(상장 사진·PDF)</strong>를 함께 올려 주세요. 증명서는 <strong>다른 사람에게 보이지 않고</strong> 운영자만 확인하며, 확인이 끝나면 삭제돼요.</li>
+     <li><strong>이름·학번·연락처</strong>는 작품 설명과 작품 이미지에 적지 말고, 이미지 안에 있다면 가려 주세요.</li>
     </ul>
    </div>
 
@@ -110,8 +123,10 @@ export default function SubmitWorkForm() {
     </div>
     <label>닉네임 (2~20자, 화면에 보여요)<input value={nick} onChange={(e) => setNick(e.target.value)} required minLength={2} maxLength={20} placeholder="실명 대신 쓸 이름" /></label>
     <label>작품 이미지 (JPG·PNG·WEBP, 5MB 이하)<input id="onus-work-img" type="file" accept="image/jpeg,image/png,image/webp" onChange={(e) => setFile(e.target.files?.[0] ?? null)} required /></label>
+    <label>수상증명서 (JPG·PNG·WEBP·PDF, 5MB 이하 · 비공개)<input id="onus-work-cert" type="file" accept="image/jpeg,image/png,image/webp,application/pdf" onChange={(e) => setCert(e.target.files?.[0] ?? null)} required /></label>
+    <label className="on-check"><input type="checkbox" checked={agreeCert} onChange={(e) => setAgreeCert(e.target.checked)} /> 수상증명서를 운영자가 수상 사실을 확인하는 데에만 쓰는 것에 동의해요. 증명서는 공개되지 않고, 확인이 끝나면 삭제된다는 것을 알고 있어요.</label>
     <label className="on-check"><input type="checkbox" checked={agree} onChange={(e) => setAgree(e.target.checked)} /> 제가 만든 작품이고, 이 작품과 위 내용을 ON:US 수상 아카이브에 공개하는 데 동의해요. 이름·학번·연락처는 포함하지 않았어요.</label>
-    <div className="on-cta"><button className="on-btn on-btn-primary" disabled={busy || !agree || !file}>{busy ? '올리는 중…' : '작품 올리기'}</button></div>
+    <div className="on-cta"><button className="on-btn on-btn-primary" disabled={busy || !agree || !agreeCert || !file || !cert}>{busy ? '올리는 중…' : '작품 올리기'}</button></div>
     {msg && <p className={msg.ok ? 'on-msg on-msg-ok' : 'on-msg'} role="status">{msg.text}</p>}
    </form>
 

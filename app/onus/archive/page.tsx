@@ -25,7 +25,7 @@ export default async function ArchivePage() {
 
  return (
   <main id="main">
-   <PageHead eyebrow="ARCHIVE" title="수상 아카이브" lead="선배들의 실제 출품작을 공모전별로 모았어요. 공모전을 먼저 고르고, 그 대회에 나간 작품을 살펴보세요." icon="archive">{subs.status === 'ok' && <div className="on-ph-actions"><Link className="on-btn on-btn-primary" href="/onus/submit">내 수상작 올리기 →</Link></div>}</PageHead>
+   <PageHead eyebrow="ARCHIVE" title="수상 아카이브" lead="선배들의 실제 출품작을 공모전별로 모았어요. 공모전을 먼저 고르고, 그 대회에 나간 작품을 살펴보세요." icon="archive"><div className="on-ph-actions"><Link className="on-btn on-btn-primary" href="/onus/submit">내 수상작 올리기 →</Link></div></PageHead>
 
    <section className="on-stats" aria-label="아카이브 현황">
     <div><strong>{s.total}</strong><span>수상·선정 기록</span></div>
