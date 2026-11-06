@@ -53,14 +53,36 @@ export default function AboutPage() {
    </section>
 
    <section className="on-section">
-    <Reveal><p className="on-eyebrow">5 MINUTES</p><h2>처음 공모전을 준비하는 학생의 5분 사용 흐름</h2><p className="on-section-lead">기능이 많아 보이지만, 처음 오는 학생이 따라가는 길은 이 다섯 단계 하나예요.</p></Reveal>
+    <Reveal><p className="on-eyebrow">WHO</p><h2>대표 사용자와 겪는 불편 (가설)</h2><p className="on-section-lead"><strong>처음 공모전을 준비하는 한양여대 2학년 학생</strong> 한 명을 기준으로 만들었어요. 아래 세 문장은 실제 인터뷰 발언이 아니라, 인터뷰에서 &ldquo;이렇게 느끼는지&rdquo; 확인할 가설 문장이에요.</p></Reveal>
+    <div className="on-about-grid">
+     <Reveal><div className="on-about-card"><h3>&ldquo;어디서 찾아야 할지 모르겠어요&rdquo;</h3><p>단톡방 공지, 학교 홈페이지, 공모전 사이트를 따로 봐야 해요.</p></div></Reveal>
+     <Reveal delay={60}><div className="on-about-card"><h3>&ldquo;내가 나가도 되는지 모르겠어요&rdquo;</h3><p>선배가 어떤 작품으로 얼마나 준비했는지 보이지 않아요.</p></div></Reveal>
+     <Reveal delay={120}><div className="on-about-card"><h3>&ldquo;뭘 언제까지 준비해야 하죠?&rdquo;</h3><p>제출 규격을 찾고 마감에서 거꾸로 일정을 직접 계산해야 해요.</p></div></Reveal>
+    </div>
+   </section>
+
+   <section className="on-section">
+    <Reveal><p className="on-eyebrow">ONE JOURNEY</p><h2>시연은 이 한 가지 여정만 보여 드려요</h2><p className="on-section-lead">기능이 많아 보이지만, 처음 오는 학생이 따라가는 길은 아래 다섯 단계 하나예요.</p></Reveal>
     <ol className="on-policy-steps">
-     <li><b>1 · 적기</b><span><Link className="on-inline-link" href="/onus/recommend">AI 추천</Link>에 학과·수업·관심사를 한두 줄 적어요.</span></li>
-     <li><b>2 · 고르기</b><span>추천 이유와 닮은 선배, 마감에서 거꾸로 계산한 준비 일정을 보고 마음에 드는 공모전을 골라요.</span></li>
-     <li><b>3 · 확인하기</b><span>공식 안내 링크로 참가 대상과 마감일을 직접 확인해요.</span></li>
-     <li><b>4 · 참고하기</b><span><Link className="on-inline-link" href="/onus/archive">수상 아카이브</Link>에서 같은 분야 선배의 작품과 준비 기간, 제출 규격을 봐요.</span></li>
-     <li><b>5 · 담기</b><span><Link className="on-inline-link" href="/onus/board">도전 보드</Link>에 저장하고 준비 단계를 체크해요. 장학금·대외활동은 같은 메뉴에서 이어서 볼 수 있어요.</span></li>
+     <li><b>1 · 전공·수업 입력</b><span><Link className="on-inline-link" href="/onus/recommend">AI 추천</Link>에 학과·수업·관심사를 한두 줄 적어요.</span></li>
+     <li><b>2 · AI 추천 확인</b><span>접수 중인 공모전 중 맞는 곳과 이유를 봐요. 틀릴 수 있으니 &ldquo;공식 안내&rdquo; 링크로 참가 대상·마감일을 직접 확인해요.</span></li>
+     <li><b>3 · 닮은 선배 작품 확인</b><span>같은 분야 선배의 <Link className="on-inline-link" href="/onus/archive">수상작</Link>과 준비 기간, 제출 규격을 봐요.</span></li>
+     <li><b>4 · 도전 보드 저장</b><span>마음에 드는 공모전을 <Link className="on-inline-link" href="/onus/board">도전 보드</Link>에 담아요.</span></li>
+     <li><b>5 · 체크리스트 확인</b><span>마감까지 남은 날과 준비 단계(자료 조사·기획·제작·제출)를 체크해요.</span></li>
     </ol>
+    <p className="on-small" style={{ marginTop: 12 }}>장학금·대외활동은 같은 메뉴에서 이어서 볼 수 있지만, 시연의 중심은 위 여정이에요.</p>
+   </section>
+
+   <section className="on-section">
+    <Reveal><p className="on-eyebrow">COMPARE</p><h2>기존 방식과 무엇이 다른가요</h2></Reveal>
+    <table className="on-status-table">
+     <tbody>
+      <tr><th>찾기</th><td>기존: 단톡방·학교 홈페이지·공모전 사이트를 따로 확인 → ON:US: 접수 중 공모전을 한곳에서, 내 전공·수업 기준으로 추천</td></tr>
+      <tr><th>판단</th><td>기존: 선배 경험을 알기 어려움 → ON:US: 같은 분야 선배 수상작·준비 기간·제출 규격을 대회와 연결</td></tr>
+      <tr><th>준비</th><td>기존: 마감 일정을 직접 계산 → ON:US: 마감에서 거꾸로 준비 일정 제안, 도전 보드·체크리스트</td></tr>
+     </tbody>
+    </table>
+    <p className="on-small" style={{ marginTop: 12 }}>위 표는 설계 의도예요. 실제로 시간이 얼마나 줄어드는지는 아직 측정하지 못했고, 아래 검증 계획으로 확인할 예정이에요.</p>
    </section>
 
    <section className="on-section">
@@ -70,9 +92,10 @@ export default function AboutPage() {
       <tr><th>가설 1</th><td>재학생은 공모전·장학금·대외활동 정보를 여러 사이트와 공지에서 따로 찾느라 어려움을 겪는다. <em className="on-small">확인 방법: 재학생 3~5명에게 평소 어디서 어떻게 찾는지 물어보는 짧은 인터뷰</em></td></tr>
       <tr><th>가설 2</th><td>선배의 작품·준비 기간·제출 규격을 보면 첫 도전의 부담이 줄어든다. <em className="on-small">확인 방법: 아카이브를 본 뒤 &ldquo;도전해 볼 마음이 생겼나요&rdquo;를 5점 척도와 한 줄 의견으로 받기</em></td></tr>
       <tr><th>가설 3</th><td>처음 온 학생이 5분 안에 나에게 맞는 기회를 하나 저장할 수 있다. <em className="on-small">확인 방법: 위 5분 흐름을 과제로 주고 관찰하며 막힌 지점 기록 (성공 기준: 참여자 과반이 5분 안에 저장까지 도달)</em></td></tr>
+      <tr><th>가설 4</th><td>AI 추천이 학생이 보기에 쓸 만하다. <em className="on-small">확인 방법: 재학생 3명이 추천 결과를 직접 써 보고 &ldquo;맞았나요 / 틀렸다면 어디가&rdquo;를 한 줄로 답하기. 틀린 추천은 프롬프트·후보 목록 개선에 반영</em></td></tr>
      </tbody>
     </table>
-    <p className="on-small" style={{ marginTop: 12 }}>이 가설들로 인터뷰 질문을 만들고, 받은 피드백은 화면 개선에 반영한 뒤 &ldquo;무엇을 들었고 무엇을 고쳤는지&rdquo;를 함께 남길 계획이에요.</p>
+    <p className="on-small" style={{ marginTop: 12 }}>이 가설들로 인터뷰 질문을 만들고, 운영 면에서는 선배 작품 올리기(동의 체크 + 수상증명서 확인 후 공개)와 익명 글 안전장치(도배 제한·본인 삭제·운영자 삭제)를 <Link className="on-inline-link" href="/onus/policy">운영·인증 정책</Link>에 적었어요. 받은 피드백은 화면 개선에 반영한 뒤 &ldquo;무엇을 들었고 무엇을 고쳤는지&rdquo;를 함께 남길 계획이에요.</p>
    </section>
 
    <section className="on-section">
