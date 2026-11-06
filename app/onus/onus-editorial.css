@@ -92,3 +92,7 @@
 /* 입력창: 흰 카드 위에서도 보이도록 종이색 면 + 선 */
 .onus :is(.on-form,.on-ai-form,.on-search) :is(input:not([type=checkbox]):not([type=radio]):not([type=file]),textarea,select){background:var(--on-soft);border:1px solid var(--on-line)}
 .onus :is(.on-form,.on-ai-form,.on-search) :is(input,textarea,select):focus{background:#fff;border-color:var(--on-ink);box-shadow:0 0 0 3px var(--on-yellow-soft)}
+
+/* 남아 있던 파란 그라데이션 정리: 잉크 단색 + 노랑 포인트 */
+.onus .on-panel.on-panel-accent,.onus .on-board-next{background:var(--on-ink);border:1px solid var(--on-ink);box-shadow:none;border-radius:var(--on-r-card)}
+.onus .on-board-next :is(strong,b){color:var(--on-yellow)}
