@@ -64,13 +64,15 @@ export default function AboutPage() {
    </section>
 
    <section className="on-section">
-    <Reveal><p className="on-eyebrow">VALIDATION</p><h2>검증 현황</h2></Reveal>
-    <div className="on-note-card" style={{ marginTop: 14 }}>
-     <ul>
-      <li>학생·선배 인터뷰와 사용성 테스트는 아직 진행하지 못했어요. 그래서 문제 정의는 가설로 표시하고, 인터뷰 결과나 사용자 수를 지어내지 않아요.</li>
-      <li>다음 단계: 재학생 3명 안팎이 위 5분 흐름을 처음부터 끝까지 따라 해 보고, 막힌 지점과 한 줄 의견을 받아 이 페이지에 그대로 기록할 계획이에요.</li>
-     </ul>
-    </div>
+    <Reveal><p className="on-eyebrow">VALIDATION</p><h2>검증할 가설과 계획</h2><p className="on-section-lead">학생 인터뷰와 사용성 테스트는 아직 진행하지 못했어요. 그래서 아래 내용은 결과가 아니라 <strong>가설과 검증 계획</strong>이고, 결과가 나오면 이 페이지에 그대로 기록해요.</p></Reveal>
+    <table className="on-status-table">
+     <tbody>
+      <tr><th>가설 1</th><td>재학생은 공모전·장학금·대외활동 정보를 여러 사이트와 공지에서 따로 찾느라 어려움을 겪는다. <em className="on-small">확인 방법: 재학생 3~5명에게 평소 어디서 어떻게 찾는지 물어보는 짧은 인터뷰</em></td></tr>
+      <tr><th>가설 2</th><td>선배의 작품·준비 기간·제출 규격을 보면 첫 도전의 부담이 줄어든다. <em className="on-small">확인 방법: 아카이브를 본 뒤 &ldquo;도전해 볼 마음이 생겼나요&rdquo;를 5점 척도와 한 줄 의견으로 받기</em></td></tr>
+      <tr><th>가설 3</th><td>처음 온 학생이 5분 안에 나에게 맞는 기회를 하나 저장할 수 있다. <em className="on-small">확인 방법: 위 5분 흐름을 과제로 주고 관찰하며 막힌 지점 기록 (성공 기준: 참여자 과반이 5분 안에 저장까지 도달)</em></td></tr>
+     </tbody>
+    </table>
+    <p className="on-small" style={{ marginTop: 12 }}>이 가설들로 인터뷰 질문을 만들고, 받은 피드백은 화면 개선에 반영한 뒤 &ldquo;무엇을 들었고 무엇을 고쳤는지&rdquo;를 함께 남길 계획이에요.</p>
    </section>
 
    <section className="on-section">

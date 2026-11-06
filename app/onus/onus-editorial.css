@@ -1,0 +1,94 @@
+/* =====================================================================
+   ON:US 에디토리얼 마감 — 한양여대 개나리 노랑 + 네이비 잉크 + 종이 배경
+   클로드 디자인 스킬 가이드(AI 티 나는 보라 그라데이션·똑같은 유리 카드·과한 움직임 지양)에 맞춰
+   색·면·움직임을 정리한 마지막 스타일입니다. 가장 마지막에 불러와서 앞선 규칙을 덮어씁니다.
+   ===================================================================== */
+.onus{
+ --on-bg:#fbf9f3;--on-ink:#101a3d;--on-mut:#5b6280;--on-line:#e7e2d4;--on-soft:#f3efe3;--on-alt:#f7f4ea;
+ --on-accent:#1e3fa8;--on-accent-press:#142c7a;--on-accent-soft:#e8edfa;
+ --on-yellow:#ffd42e;--on-yellow-soft:#fff1b0;
+ --on-glass:#fff;--on-glass-strong:#fff;--on-glass-line:var(--on-line);--on-glass-sh:none;
+ --on-r-card:14px;--on-r-btn:12px;--on-sh1:none;--on-sh2:0 14px 28px -18px rgba(16,26,61,.35);
+ background:var(--on-bg);color:var(--on-ink)}
+.onus::before{background:radial-gradient(60vw 34vw at 100% 0,rgba(255,212,46,.15),transparent 66%),#fbf9f3}
+.onus ::selection{background:var(--on-yellow-soft);color:var(--on-ink)}
+
+/* 헤더·푸터 */
+.onus .on-header{background:rgba(251,249,243,.94);-webkit-backdrop-filter:none;backdrop-filter:none;border-bottom:1px solid var(--on-line);box-shadow:none}
+.onus .on-brand-mark{background:var(--on-yellow);box-shadow:0 0 0 2px var(--on-ink);border-radius:4px;width:12px;height:12px}
+.onus .on-nav a[aria-current="page"]{background:var(--on-yellow-soft);color:var(--on-ink)}
+.onus .on-footer{background:var(--on-ink);color:#c9cee4;border-top:0}
+.onus .on-footer a{color:#fff}
+.onus .on-footer-brand{color:#fff}
+.onus .on-footer-brand span{color:var(--on-yellow)}
+.onus .on-footer-logo{background:#fff;padding:6px 12px;border-radius:8px}
+
+/* 작은 제목(eyebrow): 노란 네모 + 굵은 잉크색 */
+.onus .on-eyebrow{font-size:13px;font-weight:800;letter-spacing:.03em;color:var(--on-ink);display:flex;align-items:center;gap:8px}
+.onus .on-eyebrow::before{content:"";width:8px;height:8px;background:var(--on-yellow);box-shadow:0 0 0 1.5px var(--on-ink);flex:none}
+.onus .on-ph-eyebrow::before,.onus .on-eyebrow-nari::before{display:none}
+.onus .on-ph-ic{background:var(--on-yellow);color:var(--on-ink);box-shadow:0 0 0 1.5px var(--on-ink);border-radius:8px}
+
+/* 버튼: 잉크 버튼 + 누르면 노랑(빠르고 짧게) */
+.onus .on-btn{background:#fff;color:var(--on-ink);border:1px solid var(--on-ink);transition:background .15s ease-out,transform .15s ease-out}
+.onus .on-btn:hover{background:var(--on-yellow-soft);color:var(--on-ink)}
+.onus .on-btn-primary{background:var(--on-ink);color:#fff;border-color:var(--on-ink)}
+.onus .on-btn-primary:hover{background:var(--on-yellow);color:var(--on-ink)}
+.onus .on-more,.onus .on-inline-link{color:var(--on-accent)}
+.onus .on-chip{background:var(--on-soft);color:var(--on-ink)}
+
+/* 카드: 떠 있는 유리 대신 얇은 선으로 구분 */
+.onus :is(.on-contest-card,.on-post,.on-ext,.on-soon,.on-news,.on-finder-card,.on-board-item,.on-verif-item,.on-admin-item,.on-comment,.on-mini,.on-ai-card,.on-note-card,.on-word,.on-panel,.on-status-box,.on-step2){
+ background:#fff;-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:none;border:1px solid var(--on-line);border-radius:var(--on-r-card)}
+.onus :is(.on-contest-card,.on-post,.on-ext,.on-soon,.on-news,.on-tile,.on-show):hover{background:#fff;border-color:var(--on-ink);box-shadow:var(--on-sh2);transform:translateY(-2px)}
+.onus .on-section-alt,.onus .on-story{background:var(--on-alt);-webkit-backdrop-filter:none;backdrop-filter:none;border-top:1px solid var(--on-line);border-bottom:1px solid var(--on-line)}
+.onus .on-panel-accent{background:var(--on-ink);color:#fff;border-color:var(--on-ink)}
+.onus .on-panel-empty,.onus .on-status-soon{background:transparent;border:1px dashed #cfc8b2}
+.onus .on-filter{background:var(--on-alt)}
+
+/* 페이지 머리말: 기하 도형(노란 원 + 잉크 링)과 큰 제목 */
+.onus .on-pagehead{background:none;border-bottom:1px solid var(--on-line)}
+.onus .on-pagehead h1{font-size:clamp(30px,4.4vw,54px);font-weight:900;letter-spacing:-.055em;line-height:1.12}
+.onus .on-ph-deco i{display:none}
+.onus .on-ph-deco::before{content:"";position:absolute;right:34px;top:8px;width:112px;height:112px;border-radius:50%;background:var(--on-yellow)}
+.onus .on-ph-deco::after{content:"";position:absolute;right:0;top:48px;width:112px;height:112px;border-radius:50%;border:2px solid var(--on-ink)}
+.onus .on-ph-deco{animation:none}
+
+/* 숫자: 카드 대신 굵은 선 위의 큰 숫자 */
+.onus .on-stats>div{background:none;border:0;border-top:2px solid var(--on-ink);border-radius:0;padding:14px 0 0}
+.onus .on-stats strong,.onus .on-stat-n{font-weight:900;letter-spacing:-.05em}
+.onus .on-statband li{background:#fff;-webkit-backdrop-filter:none;backdrop-filter:none;border:1px solid var(--on-line);border-radius:var(--on-r-card);box-shadow:none}
+.onus .on-stat-n em{color:var(--on-accent)}
+
+/* 홈 타일(벤토): 첫 칸은 잉크, 나머지는 선 */
+.onus .on-tilt{transform:none!important;transition:none}
+.onus .on-tile,.onus .on-tilt .on-tile{background:#fff;border:1px solid var(--on-line);box-shadow:none;border-radius:var(--on-r-card)}
+.onus .on-tile-ic{background:var(--on-yellow-soft);color:var(--on-ink);border-radius:12px}
+.onus .on-tiles>li:first-child .on-tile,.onus .on-tiles>li:first-child .on-tilt .on-tile{background:var(--on-ink);border-color:var(--on-ink);box-shadow:none}
+.onus .on-tiles>li:first-child .on-tile-ic{background:var(--on-yellow);color:var(--on-ink);-webkit-backdrop-filter:none;backdrop-filter:none;border-radius:16px}
+
+/* 홈 첫 화면: 차분한 네이비 + 노랑 포인트, 마스코트가 주인공 */
+.onus .on-hero3d{background:radial-gradient(60% 80% at 82% 45%,#1c3180 0%,transparent 72%),#0b1431}
+.onus .on-hero3d-canvas{opacity:.42}
+.onus .on-hero3d h1{text-shadow:none}
+.onus .on-hero3d h1 span{background:none;-webkit-text-fill-color:var(--on-yellow);color:var(--on-yellow)}
+.onus .on-hero3d-cta .primary{background:var(--on-yellow);color:var(--on-ink);box-shadow:none;transition:background .15s ease-out,transform .15s ease-out}
+.onus .on-hero3d-cta .primary:hover{background:#ffe066}
+.onus .on-hero-mascot{bottom:12%;width:clamp(230px,28vw,400px)}
+.onus .on-hero-mascot::before{content:"";position:absolute;inset:-16%;border-radius:50%;border:1.5px dashed rgba(255,212,46,.5)}
+.onus .on-hero-mascot::after{content:"";position:absolute;inset:-4%;border-radius:50%;background:radial-gradient(closest-side,rgba(255,212,46,.16),transparent);z-index:-1}
+.onus .on-hero-mascot .on-m3d-back{filter:brightness(.55) saturate(1.1)}
+
+/* AI 추천 */
+.onus .on-ai-form{background:#fff;border:1px solid var(--on-line);border-radius:18px;box-shadow:none}
+.onus .on-ai-spark{background:var(--on-yellow);color:var(--on-ink)}
+.onus .on-ai-score{background:var(--on-yellow-soft);color:var(--on-ink)}
+
+/* 움직임: 필요한 곳에만 짧게(0.3초 이내, ease-out) */
+.onus .on-reveal{transition-duration:.3s;transition-timing-function:ease-out}
+.onus .on-nari-lg,.onus .on-nav-nari{animation:none}
+@media(max-width:800px){.onus .on-hero-mascot{display:block;right:16px;bottom:auto;top:96px;width:112px}.onus .on-hero-mascot::before{display:none}}
+
+/* 입력창: 흰 카드 위에서도 보이도록 종이색 면 + 선 */
+.onus :is(.on-form,.on-ai-form,.on-search) :is(input:not([type=checkbox]):not([type=radio]):not([type=file]),textarea,select){background:var(--on-soft);border:1px solid var(--on-line)}
+.onus :is(.on-form,.on-ai-form,.on-search) :is(input,textarea,select):focus{background:#fff;border-color:var(--on-ink);box-shadow:0 0 0 3px var(--on-yellow-soft)}
