@@ -21,7 +21,7 @@ export default function RecommendPage() {
  const live = externalContests.filter((x) => x.deadline >= today).length;
  return (
   <main id="main">
-   <PageHead eyebrow="AI RECOMMEND" title="나에게 맞는 공모전, AI가 골라 줘요" lead={`지금 접수 중인 공모전 ${live}개 중에서 전공·관심사·경험에 맞는 곳을 추천해요. 대학생 참가 가능 여부도 함께 따져 드려요.`} icon="spark" />
+   <PageHead eyebrow="AI RECOMMEND" title="나에게 맞는 공모전, AI가 골라 줘요" lead={`지금 접수 중인 공모전 ${live}개 중에서 전공·관심사·경험에 맞는 곳을 추천해요. 대학생 참가 가능 여부도 함께 따져 드려요.`} icon="spark" mascot />
    <section className="on-section on-section-tight on-narrow-wide">
     {aiEnabled() ? <AiRecommend today={today} /> : <div className="on-empty" role="status"><strong>AI 추천은 지금 꺼져 있어요</strong><p>대신 <Link className="on-inline-link" href="/onus">첫 화면의 "나에게 맞는 도전 찾기"</Link>(키워드 규칙 기반)와 <Link className="on-inline-link" href="/onus/contests">공모전 모음</Link>을 이용해 주세요.</p></div>}
    </section>

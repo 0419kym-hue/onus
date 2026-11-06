@@ -55,7 +55,7 @@ export default function AiRecommend({ today }: { today: string }) {
  return (
   <div className="on-ai">
    <form className="on-ai-form" onSubmit={submit}>
-    <p className="on-ai-label"><span className="on-ai-spark" aria-hidden="true">✦</span>나를 알려 주세요</p>
+    <p className="on-ai-label"><img className="on-nari on-nari-lg" src="/onus/brand/hywu-nari.webp" alt="한양여대 마스코트 나리" width={52} height={58} />나를 알려 주세요 <span className="on-ai-badge">AI 도우미 나리</span></p>
     <div className="on-ai-grid">
      <label className="on-ai-field"><span>학과·전공</span>
       <input value={major} maxLength={60} onChange={(e) => setMajor(e.target.value)} placeholder="예: 시각디자인" />
@@ -82,10 +82,11 @@ export default function AiRecommend({ today }: { today: string }) {
 
    <div aria-live="polite">
     {err && <p className="on-ai-err" role="alert">{err}</p>}
-    {busy && <div className="on-ai-skel" aria-hidden="true"><i /><i /><i /></div>}
+    {busy && <><p className="on-ai-busy" role="status"><img className="on-nari on-nari-bounce" src="/onus/brand/hywu-nari.webp" alt="" width={40} height={45} />나리가 어울리는 공모전을 찾고 있어요…</p><div className="on-ai-skel" aria-hidden="true"><i /><i /><i /></div></>}
     {result && (
      <div className="on-ai-out">
       <div className="on-ai-sumbox">
+       <img className="on-nari on-nari-side" src="/onus/brand/hywu-nari.webp" alt="" width={56} height={63} />
        <p className="on-ai-sum">{result.summary}</p>
        {result.insight && <p className="on-ai-insight"><b>수업에서 읽은 역량</b>{result.insight}</p>}
        {result.tags.length > 0 && <ul className="on-tags">{result.tags.map((t) => <li key={t}>{t}</li>)}</ul>}

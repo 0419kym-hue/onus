@@ -89,7 +89,7 @@ export default function AboutPage() {
     <div className="on-about-card" style={{ marginTop: 18 }}>
      <table className="on-status-table">
       <tbody>
-       <tr><th><span className="on-tag-ok">구현</span></th><td>수상 아카이브·대회 성격·소식(수집한 데이터), 나의 도전 보드(브라우저 저장), AI 맞춤 추천, 닮은 선배 매칭, 출품 준비 체크리스트</td></tr>
+       <tr><th><span className="on-tag-ok">구현</span></th><td>수상 아카이브·대회 성격·소식(수집한 데이터), 장학금(교내·교외 구분과 자가 진단), 대외활동 안내, 나의 도전 보드(브라우저 저장), AI 맞춤 추천, 닮은 선배 매칭, 출품 준비 체크리스트</td></tr>
        <tr><th><span className="on-tag-ok">구현 (DB 연동)</span></th><td>커뮤니티 글·댓글, 수상·출품 경험 인증 신청과 운영자 검수</td></tr>
        <tr><th><span className="on-tag-no">미구현</span></th><td>작품 업로드와 PDF 규격 점검, 인증된 선배에게 피드백 요청과 수정 체크리스트, 학교 계정·학번 연동</td></tr>
        <tr><th><span className="on-tag-demo">한계</span></th><td>사용자 검증(인터뷰) 결과가 아직 없고, 선배의 실행 단계·시도한 내용은 기록을 받지 못해 비어 있어요. 대회 정보는 수집 시점 기준이라 공식 요강 확인이 필요해요.</td></tr>

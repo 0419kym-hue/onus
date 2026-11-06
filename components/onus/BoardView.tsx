@@ -59,7 +59,7 @@ export default function BoardView() {
      );
     })}
    </ul>
-   <p className="on-small">이 보드는 <strong>이 브라우저에만 저장</strong>돼요. 로그인도 개인정보도 필요 없고, 다른 기기와는 공유되지 않아요. 캘린더 파일은 마감일 종일 일정과 3일 전 알림이 들어 있어요.</p>
+   <p className="on-small">이 보드는 <strong>이 브라우저에만 저장</strong>돼요. 개인정보를 받지 않고, 다른 기기와는 공유되지 않아요. 캘린더 파일은 마감일 종일 일정과 3일 전 알림이 들어 있어요.</p>
   </div>
  );
 }

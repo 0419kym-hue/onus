@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 
-// 로그인이 없으므로 닉네임·유형은 이 브라우저에만 저장하고, 글마다 만든 비밀 키로 "내가 쓴 글"을 구분합니다.
+// 회원 계정을 두지 않으므로 닉네임·유형은 이 브라우저에만 저장하고, 글마다 만든 비밀 키로 "내가 쓴 글"을 구분합니다.
 // 비밀 키를 지우거나 다른 브라우저로 가면 그 글은 삭제할 수 없습니다.
 const PROFILE = 'onus:profile';
 const KEYS = 'onus:keys';

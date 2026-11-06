@@ -86,7 +86,7 @@ export default function CommentThread({ targetType, targetId, comments, allowMak
   <div className="on-comments">
    <h3>{title} <span className="on-count-inline">{comments.length}</span></h3>
    {roots.length === 0 ? <p className="on-small">아직 코멘트가 없어요. 첫 코멘트를 남겨 보세요.</p> : <ul>{roots.map((c) => renderItem(c, true))}</ul>}
-   <Composer targetType={targetType} targetId={targetId} parentId={null} allowMaker={allowMaker} placeholder="코멘트를 남겨요 (로그인 없이 바로)" onDone={() => undefined} />
+   <Composer targetType={targetType} targetId={targetId} parentId={null} allowMaker={allowMaker} placeholder="코멘트를 남겨요 (닉네임만 적으면 바로)" onDone={() => undefined} />
   </div>
  );
 }

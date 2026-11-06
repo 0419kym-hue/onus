@@ -158,7 +158,7 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
     <Reveal>
      <p className="on-eyebrow">코멘트와 댓글</p>
      <h2>선배의 코멘트, 그리고 댓글</h2>
-     <p className="on-section-lead">이 작품을 보고 든 생각이나 준비 과정, 질문을 코멘트로 남기고 코멘트마다 댓글로 이야기를 이어 갈 수 있어요. 보는 것은 로그인 없이 가능해요.</p>
+     <p className="on-section-lead">이 작품을 보고 든 생각이나 준비 과정, 질문을 코멘트로 남기고 코멘트마다 댓글로 이야기를 이어 갈 수 있어요. 보는 것은 누구나 할 수 있어요.</p>
     </Reveal>
     {comments.status === 'ok'
      ? <CommentThread targetType="work" targetId={work.slug} comments={comments.data} allowMaker title="코멘트" />

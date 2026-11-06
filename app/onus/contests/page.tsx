@@ -16,7 +16,7 @@ export default function ContestsPage() {
    <section className="on-contest-head">
     <p className="on-eyebrow">CONTESTS</p>
     <h1>공모전 모음</h1>
-    <p className="on-detail-sub">지금 접수 중인 공모전부터, 선배들이 참가한 대회의 성격까지 로그인 없이 볼 수 있어요.</p>
+    <p className="on-detail-sub">지금 접수 중인 공모전부터, 선배들이 참가한 대회의 성격까지 한곳에서 볼 수 있어요.</p>
    </section>
 
    <section className="on-section">

@@ -1,7 +1,7 @@
 import Icon, { type IconName } from './Icons';
 
 /** 안쪽 페이지 공통 머리말: 아이콘 칩 + 작은 제목 + 장식 오브젝트 */
-export default function PageHead({ eyebrow, title, lead, icon, children }: { eyebrow: string; title: string; lead: string; icon: IconName; children?: React.ReactNode }) {
+export default function PageHead({ eyebrow, title, lead, icon, mascot, children }: { eyebrow: string; title: string; lead: string; icon: IconName; mascot?: boolean; children?: React.ReactNode }) {
  return (
   <header className="on-pagehead">
    <div className="on-pagehead-inner">
@@ -10,7 +10,9 @@ export default function PageHead({ eyebrow, title, lead, icon, children }: { eye
     <p className="on-pagehead-lead">{lead}</p>
     {children}
    </div>
-   <span className="on-ph-deco" aria-hidden="true"><i /><i /><i /></span>
+   {mascot
+    ? <img className="on-ph-crew" src="/onus/brand/hywu-crew.webp" alt="한양여자대학교 마스코트 하이유 크루(나리, 나래, 빛나리)" width={262} height={239} />
+    : <span className="on-ph-deco" aria-hidden="true"><i /><i /><i /></span>}
   </header>
  );
 }

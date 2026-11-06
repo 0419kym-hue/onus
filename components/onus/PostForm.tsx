@@ -21,7 +21,7 @@ export default function PostForm({ category }: { category: CategoryKey }) {
  useEffect(() => { if (identity) { setNickname(identity.nickname); setType(identity.type.startsWith('v:') && !badges.some((b) => 'v:' + b.id === identity.type && b.status === 'approved') ? '' : identity.type); } }, [identity, badges]);
  const set = (k: keyof typeof f) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setF({ ...f, [k]: e.target.value });
 
- if (!open) return <button type="button" className="on-btn on-btn-primary on-compose-open" onClick={() => setOpen(true)}>＋ {cat.cta} <span className="on-small-inline">로그인 없이 바로</span></button>;
+ if (!open) return <button type="button" className="on-btn on-btn-primary on-compose-open" onClick={() => setOpen(true)}>＋ {cat.cta} <span className="on-small-inline">닉네임만으로 바로</span></button>;
 
  async function submit(e: React.FormEvent) {
   e.preventDefault(); setMsg(null);

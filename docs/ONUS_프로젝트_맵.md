@@ -4,6 +4,19 @@
 > 사실이 바뀌면 이 문서도 같이 고치세요. 확인하지 않은 내용은 "미확인"이라고 적습니다.
 > 마지막 정리: 2026-11-06
 
+## 0. 심사자(AI·사람)를 위한 30초 요약
+
+| 질문 | 답 |
+|---|---|
+| 무엇인가 | 한양여대 학생이 선배의 수상작·준비 기간·제출 규격을 근거로 다음 공모전 도전을 정하게 돕는 플랫폼 |
+| 해커톤 주제와의 관계 | "내 전공 현장을 바꾸는 AI": 학생의 학과·수업을 읽어 맞는 공모전과 닮은 선배를 연결 |
+| 배포 주소 | https://hy-company-eight.vercel.app/onus |
+| 저장소 | https://github.com/0419kym-hue/onus (main) |
+| 핵심 코드는 어디 | AI 추천 `app/api/onus/recommend/route.ts` · 닮은 선배 규칙 `lib/onus/fields.ts` · 데이터 `lib/onus/works.ts`, `contests.ts` · 수상작 올리기 `app/onus/submit/`, `components/onus/SubmitWorkForm.tsx`, `supabase/migrations/20261106120000_*.sql` |
+| 확인 방법 | `npm run typecheck` → `npm run build`(모든 라우트가 목록에 나와야 함). 환경변수 없이도 빌드되고, 키가 없으면 AI API는 503으로 안내 |
+| 설계 원칙 | ① AI는 번호만 고르고 제목·링크·날짜는 서버 데이터로 채움(환각 방지) ② 선배 매칭·기간 비교는 AI가 아닌 규칙 ③ 모르는 것은 `unknown`/"기록 없음"으로 표시 ④ 회차가 다른 정보를 섞지 않음 ⑤ 구현·미구현을 `/onus/about`에 그대로 공개 |
+| 알려진 빈틈 | 사용자 인터뷰 결과 없음 · 선배 실행 단계 기록 없음(기간만) · 작품 업로드는 **DB 마이그레이션 적용 전에는 "준비 중" 안내만 표시**(적용 방법은 6장) · 인증 리뷰어 매칭·PDF 규격 점검은 미구현 |
+
 ## 1. 한 줄 개념
 
 **ON:US** = 한양여자대학교 학생이 공모전을 준비할 때, **같은 학교 선배의 실제 출품작·수상 기록·준비 기간·제출 규격**을 대회 정보와 연결해 보여 주고, 학과·수업을 바탕으로 **닮은 선배와 도전할 공모전을 추천**하는 웹 플랫폼.
@@ -55,7 +68,10 @@
 | `/onus/board` | `app/onus/board/page.tsx` | 나의 도전 보드(담은 공모전, 브라우저 저장) | localStorage (`lib/onus/board.ts`) |
 | `/onus/community`, `/onus/community/[id]` | `app/onus/community/**` | 팀원 모집·모임·이야기 글과 댓글 | Supabase `onus_posts`, `onus_comments` |
 | `/onus/verify` | `app/onus/verify/page.tsx` | 수상·출품 경험 인증 신청 | Supabase `onus_verifications` |
-| `/onus/admin` | `app/onus/admin/page.tsx` | 인증 심사(운영자) | Supabase |
+| `/onus/admin` | `app/onus/admin/page.tsx` | 운영자: 경험 인증 심사 + 올라온 수상작 승인(운영자 이메일 로그인) | Supabase |
+| `/onus/scholarships` | `app/onus/scholarships/page.tsx` | 교내(한양여대)·교외 장학금 구분, 신청 기간·대상·방법, 규칙 기반 자가 진단 | `lib/onus/scholarships.ts` (데이터+`evaluate()` 규칙), `components/onus/ScholarshipBoard.tsx` |
+| `/onus/activities` | `app/onus/activities/page.tsx` | 대외활동 사이트·정부·교내 지원, 모집 중 예시(마감 지나면 자동 숨김), 조심할 점 | `lib/onus/activities.ts` |
+| `/onus/submit` | `app/onus/submit/page.tsx` | 수상작 올리기: 작품 정보·이미지 업로드, 운영자 승인 후 아카이브에 공개 | Supabase `onus_work_submissions`, 저장소 `onus-works` |
 | `/onus/about` | `app/onus/about/page.tsx` | 서비스 소개(문제·해결·AI 사용 범위·구현 상태) | 정적 + 집계 |
 | `/api/onus/recommend` | `app/api/onus/recommend/route.ts` | AI 추천 API (POST) | OpenAI + 서버 데이터 |
 | `/`, `/jobs/[id]`, `/career`, `/setup`, `/api/apply` | `app/**` | **기존 HY컴퍼니 수업용 화면. 건드리지 않음** | Supabase |
@@ -79,12 +95,17 @@
 | `journey.ts` | 준비 기간 → 일 수·문구 |
 | `external-contests.ts`, `news.ts` | 수집 데이터(`*_CHECKED_AT` = 수집일) |
 | `flags.ts` | `aiEnabled()` |
+| `scholarships.ts` | 장학금 데이터(교내/교외, 근거 `basis`, 확인하지 못한 것 `unknown`)와 자가 진단 규칙 `evaluate()` — AI 아님 |
+| `activities.ts` | 대외활동 사이트·모집 예시 데이터(수집일 2026-11-06) |
+| `submissions.ts` | 운영자가 승인한 학생 작품 읽기(서버), 이미지 주소 |
 | `community*.ts`, `badges.ts`, `anon.ts`, `admin-client.ts`, `supabase-browser.ts`, `board.ts` | Supabase·브라우저 저장 관련 |
 
 ### 컴포넌트 (`components/onus/`)
 - 레이아웃·공통: `OnusHeader`, `PageHead`, `Reveal`(스크롤 등장), `Icons`, `AwardBadge`
 - 메인: `HeroScene` → `Hero3D`(3D, `ssr:false` 동적 로드), `CountUp`, `Tilt`, `ChallengeFinder`(규칙 기반 도전 찾기), `AiRecommend`
-- 아카이브: `ArchiveOverview`(비교 표), `WorkGallery`
+- 아카이브: `ArchiveOverview`(비교 표), `WorkGallery`, 올라온 작품 카드(`archive/page.tsx`)
+- 수상작 올리기: `SubmitWorkForm`(학생), `AdminWorks`(운영자 승인)
+- 마스코트: 이미지 `public/onus/brand/hywu-crew.*`(세 캐릭터), `hywu-nari.*`(나리, AI 도우미). 원본은 학교 제공 JPG에서 흰 배경만 투명 처리. 표기: © Hanyang Women's University(푸터)
 - 대회: `PrepChecklist`(체크리스트, localStorage), `ExternalContests`, `SaveButton`
 - 커뮤니티·인증: `CommentThread`, `PostForm`, `PostActions`, `IdentityFields`, `VerifyForm`, `AdminReview`, `NewsList`, `BoardView`
 
@@ -119,6 +140,10 @@
 14. 배포(`vercel deploy --prod`)와 `git push`는 사용자가 요청했을 때만 한다. 토큰은 사용자가 준 것을 그 작업에만 쓴다.
 15. 문구는 한국어 존댓말 해요체, 쉬운 말. 큰 제목 크기는 `DESIGN.md` 타입 스케일을 따른다.
 16. 한국어 경로·파일명이 있는 Windows 환경이다. 셸 따옴표 문제가 생기면 파일 도구로 쓴다.
+17. 사이트 문구에서 로그인 유무를 내세우는 표현을 쓰지 않는다(사용자 요청). 로그인을 도입하자는 뜻이 아니라 문구만 피한다.
+18. 마스코트 이미지는 학교 소유다. 변형(색·표정)하지 않고 출처 표기를 유지한다.
+19. 장학금·대외활동 정보는 확인한 공개 자료만 쓰고 `unknown`에 모르는 것을 남긴다. 자격 판정은 AI가 아니라 `evaluate()` 규칙으로만 하고, 결과에는 "공식 공고 확인" 안내를 유지한다.
+20. 운영 DB를 바꾸는 명령(`supabase db push`)은 사용자가 직접 실행한다. 마이그레이션 파일은 `supabase/migrations/`에 두고 적용 여부를 확인해서 쓴다.
 
 ## 6. 알려진 한계 (2026-11-06 기준)
 - 사용자 검증(인터뷰) 결과 없음. 문제 정의는 가설이다.
@@ -127,3 +152,15 @@
 - 한국색채학회 제7회 요강은 포스터 이미지로만 공개되어 글로 확인하지 못했다.
 - 3D 히어로는 WebGL이 없는 환경에서는 그라디언트 배경만 보인다(의도된 폴백).
 - 시각디자인·경영 분야로 수상한 선배 작품이 아직 없어 해당 학과 추천 시 "선배 없음" 안내가 나온다.
+
+## 7. 마이그레이션 적용 방법 (수상작 올리기)
+
+`supabase/migrations/20261106120000_onus_work_submissions.sql`은 새 테이블 `onus_work_submissions`, 저장소 `onus-works`, 운영자용 함수를 추가한다(기존 테이블은 수정하지 않음).
+원격 적용 현황은 `npx supabase migration list --remote`로 확인하고, 아래 명령으로 적용한다.
+
+```sh
+npx supabase db push --remote --dry-run   # 올라갈 파일만 미리 확인
+npx supabase db push --remote             # 실제 적용
+```
+
+적용 후에는 `/onus/submit`에서 작품을 올리고, `/onus/admin`에서 운영자(`onus_admins` 등록 이메일)로 로그인해 승인하면 `/onus/archive`의 "새로 올라온 수상작"에 보인다.

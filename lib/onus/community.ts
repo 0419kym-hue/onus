@@ -2,7 +2,7 @@ import 'server-only';
 import { createClient } from '@supabase/supabase-js';
 import type { CategoryKey, Comment, Post } from './community-types';
 
-// 읽기는 로그인 없이 공개 키로 합니다. 쓰기는 브라우저에서 로그인한 사용자의 권한(RLS)으로만 합니다.
+// 읽기는 공개 키(anon)로 하고, 쓰기는 브라우저에서 닉네임과 글을 쓸 때 만든 비밀 키(edit_key)로 합니다(RLS가 허용한 컬럼만).
 // 연결 설정이 없거나 테이블이 없을 때 예시 글로 대신 채우지 않고 상태를 그대로 알려 줍니다.
 export type Result<T> = { status: 'ok'; data: T } | { status: 'unconfigured' } | { status: 'missing-table' } | { status: 'error' };
 

@@ -20,7 +20,7 @@ export default async function CommunityPage({ searchParams }: { searchParams: Pr
    <section className="on-contest-head">
     <p className="on-eyebrow">COMMUNITY</p>
     <h1>커뮤니티</h1>
-    <p className="on-detail-sub">공모전을 함께 준비할 사람과 공간, 이야기를 찾아요. 보는 것도, 쓰는 것도 로그인 없이 바로 할 수 있어요.</p>
+    <p className="on-detail-sub">공모전을 함께 준비할 사람과 공간, 이야기를 찾아요. 보는 것도, 쓰는 것도 바로 할 수 있어요.</p>
    </section>
 
    <nav className="on-tabs" aria-label="커뮤니티 카테고리">

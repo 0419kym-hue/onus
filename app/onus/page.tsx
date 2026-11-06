@@ -17,6 +17,8 @@ export const dynamic = 'force-dynamic'; // 마감이 지난 공모전은 빼고 
 const TILES: { href: string; icon: IconName; title: string; desc: string }[] = [
  { href: '/onus/archive', icon: 'archive', title: '수상 아카이브', desc: '공모전별로 모은 선배들의 수상작' },
  { href: '/onus/contests', icon: 'trophy', title: '공모전', desc: '지금 접수 중인 공모전과 대회 성격' },
+ { href: '/onus/scholarships', icon: 'cap', title: '장학금', desc: '교내·교외 장학금 구분과 자가 진단' },
+ { href: '/onus/activities', icon: 'flag', title: '대외활동', desc: '대외활동 사이트와 모집 중인 예시' },
  { href: '/onus/news', icon: 'news', title: '한양여대 소식', desc: '공모전·대회 관련 기사 모음' },
  { href: '/onus/community', icon: 'chat', title: '커뮤니티', desc: '팀원 모집, 모임 공간, 참가 학생' },
  { href: '/onus/verify', icon: 'badge', title: '경험 인증', desc: '서류로 수상·출품 경험 인증' },
@@ -87,7 +89,7 @@ export default function OnusHome() {
 
    <section id="top-ai" className="on-section">
     <Reveal>
-     <p className="on-eyebrow">AI 맞춤 추천</p>
+     <p className="on-eyebrow on-eyebrow-nari"><img className="on-nari" src="/onus/brand/hywu-nari.webp" alt="" width={28} height={31} />AI 맞춤 추천</p>
      <h2>나에게 딱 맞는 공모전, AI가 골라 줘요</h2>
      <p className="on-section-lead">전공과 관심사, 경험을 적으면 지금 접수 중인 공모전 중에서 참가 자격까지 따져 추천해 드려요.</p>
     </Reveal>

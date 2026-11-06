@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 
-// "나의 도전 보드": 담아 둔 공모전과 준비 단계를 이 브라우저(localStorage)에만 저장합니다. 로그인·개인정보 없음.
+// "나의 도전 보드": 담아 둔 공모전과 준비 단계를 이 브라우저(localStorage)에만 저장합니다. 개인정보 수집 없음.
 const KEY = 'onus:board';
 const EVT = 'onus-board-change';
 export const STEPS = ['자료 조사', '기획·콘셉트', '제작', '제출 준비'] as const;
