@@ -53,6 +53,27 @@ export default function AboutPage() {
    </section>
 
    <section className="on-section">
+    <Reveal><p className="on-eyebrow">5 MINUTES</p><h2>처음 공모전을 준비하는 학생의 5분 사용 흐름</h2><p className="on-section-lead">기능이 많아 보이지만, 처음 오는 학생이 따라가는 길은 이 다섯 단계 하나예요.</p></Reveal>
+    <ol className="on-policy-steps">
+     <li><b>1 · 적기</b><span><Link className="on-inline-link" href="/onus/recommend">AI 추천</Link>에 학과·수업·관심사를 한두 줄 적어요.</span></li>
+     <li><b>2 · 고르기</b><span>추천 이유와 닮은 선배, 마감에서 거꾸로 계산한 준비 일정을 보고 마음에 드는 공모전을 골라요.</span></li>
+     <li><b>3 · 확인하기</b><span>공식 안내 링크로 참가 대상과 마감일을 직접 확인해요.</span></li>
+     <li><b>4 · 참고하기</b><span><Link className="on-inline-link" href="/onus/archive">수상 아카이브</Link>에서 같은 분야 선배의 작품과 준비 기간, 제출 규격을 봐요.</span></li>
+     <li><b>5 · 담기</b><span><Link className="on-inline-link" href="/onus/board">도전 보드</Link>에 저장하고 준비 단계를 체크해요. 장학금·대외활동은 같은 메뉴에서 이어서 볼 수 있어요.</span></li>
+    </ol>
+   </section>
+
+   <section className="on-section">
+    <Reveal><p className="on-eyebrow">VALIDATION</p><h2>검증 현황</h2></Reveal>
+    <div className="on-note-card" style={{ marginTop: 14 }}>
+     <ul>
+      <li>학생·선배 인터뷰와 사용성 테스트는 아직 진행하지 못했어요. 그래서 문제 정의는 가설로 표시하고, 인터뷰 결과나 사용자 수를 지어내지 않아요.</li>
+      <li>다음 단계: 재학생 3명 안팎이 위 5분 흐름을 처음부터 끝까지 따라 해 보고, 막힌 지점과 한 줄 의견을 받아 이 페이지에 그대로 기록할 계획이에요.</li>
+     </ul>
+    </div>
+   </section>
+
+   <section className="on-section">
     <Reveal><p className="on-eyebrow">AI USAGE</p><h2>AI는 어디에 쓰고, 어디에 쓰지 않나요</h2></Reveal>
     <div className="on-about-grid">
      <Reveal><div className="on-about-card">
@@ -90,8 +111,8 @@ export default function AboutPage() {
      <table className="on-status-table">
       <tbody>
        <tr><th><span className="on-tag-ok">구현</span></th><td>수상 아카이브·대회 성격·소식(수집한 데이터), 장학금(교내·교외 구분과 자가 진단), 대외활동 안내, 나의 도전 보드(브라우저 저장), AI 맞춤 추천, 닮은 선배 매칭, 출품 준비 체크리스트</td></tr>
-       <tr><th><span className="on-tag-ok">구현 (DB 연동)</span></th><td>커뮤니티 글·댓글, 수상·출품 경험 인증 신청과 운영자 검수</td></tr>
-       <tr><th><span className="on-tag-no">미구현</span></th><td>작품 업로드와 PDF 규격 점검, 인증된 선배에게 피드백 요청과 수정 체크리스트, 학교 계정·학번 연동</td></tr>
+       <tr><th><span className="on-tag-ok">구현 (DB 연동)</span></th><td>커뮤니티 글·댓글, 수상·출품 경험 인증 신청과 운영자 검수 (절차와 한계: <Link className="on-inline-link" href="/onus/policy">운영·인증 정책</Link>)</td></tr>
+       <tr><th><span className="on-tag-no">미구현</span></th><td>글·댓글 신고·숨김 기능, 작품 업로드와 PDF 규격 점검, 인증된 선배에게 피드백 요청과 수정 체크리스트, 학교 계정·학번 연동</td></tr>
        <tr><th><span className="on-tag-demo">한계</span></th><td>사용자 검증(인터뷰) 결과가 아직 없고, 선배의 실행 단계·시도한 내용은 기록을 받지 못해 비어 있어요. 대회 정보는 수집 시점 기준이라 공식 요강 확인이 필요해요.</td></tr>
       </tbody>
      </table>

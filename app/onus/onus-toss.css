@@ -625,3 +625,9 @@
 .onus .on-act-card .on-act-good b,.onus .on-act-card .on-small b{margin-right:6px;color:var(--on-accent)}
 .onus .on-act-card .on-btn{margin-top:auto;align-self:flex-start}
 @media(max-width:900px){.onus .on-test-list,.onus .on-sch-grid,.onus .on-act-grid,.onus .on-kind-note{grid-template-columns:1fr}.onus .on-act-types{grid-template-columns:repeat(2,minmax(0,1fr))}.onus .on-act-live{grid-template-columns:1fr}}
+
+/* 정책·5분 흐름: 번호가 붙은 단계 목록 */
+.onus .on-policy-steps{margin-top:18px;display:grid;gap:10px;counter-reset:none}
+.onus .on-policy-steps li{display:grid;grid-template-columns:150px 1fr;gap:14px;align-items:baseline;padding:14px 20px;border-radius:18px;background:rgba(255,255,255,.82);border:1px solid rgba(60,90,170,.1);font-size:14.5px;line-height:1.65;color:var(--on-g700)}
+.onus .on-policy-steps li b{color:var(--on-accent);font-weight:800}
+@media (max-width:640px){.onus .on-policy-steps li{grid-template-columns:1fr;gap:2px}}
