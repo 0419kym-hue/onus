@@ -23,13 +23,12 @@ export default function ContestsPage() {
     <Reveal>
      <p className="on-eyebrow">01 · 지금 접수 중</p>
      <h2>접수 중인 공모전</h2>
-     <p className="on-section-lead">{EXTERNAL_CHECKED_AT}에 공모전 정보 사이트(주로 위비티)의 상세 페이지를 읽어 모은 목록입니다. <strong>실시간 연동이 아니고 전체 공모전도 아닙니다.</strong> 일정과 참가 대상은 바뀔 수 있으니 &ldquo;공식 안내&rdquo; 링크에서 꼭 다시 확인해 주세요. 마감이 지난 항목은 자동으로 숨겨져요.</p>
+     <p className="on-section-lead">{EXTERNAL_CHECKED_AT}에 공모전 정보 사이트(주로 위비티)의 상세 페이지를 읽어 모은 목록입니다. 일정과 참가 대상은 바뀔 수 있으니 &ldquo;공식 안내&rdquo; 링크에서 꼭 다시 확인해 주세요. 마감이 지난 항목은 자동으로 숨겨져요.</p>
     </Reveal>
     <ExternalContests items={externalContests} today={today} />
     <Reveal className="on-unknown">
      <h3>더 많은 공모전은 여기서 볼 수 있어요</h3>
      <ul className="on-chips on-site-links">{contestSites.map((x) => <li key={x.url}><a className="on-site" href={x.url} target="_blank" rel="noopener noreferrer">{x.name} ↗</a></li>)}</ul>
-     <p className="on-small">외부 사이트의 전체 목록을 자동으로 가져오는 기능은 각 사이트의 이용 허락이 필요해 아직 없어요.</p>
     </Reveal>
    </section>
 

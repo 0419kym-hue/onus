@@ -1,5 +1,5 @@
 // 외부 공모전 정보 사이트(주로 위비티)의 공개 상세 페이지를 읽어 모은 "수집 시점 기준" 목록입니다.
-// 실시간 연동이 아니며, 접수 일정·대상은 바뀔 수 있으므로 반드시 상세 링크의 공식 안내에서 다시 확인해야 합니다.
+// 접수 일정·대상은 바뀔 수 있으므로 반드시 상세 링크의 공식 안내에서 다시 확인해야 합니다.
 // 마감일이 지난 항목은 화면에서 자동으로 숨깁니다. 마감일은 상세 페이지의 접수 기간 끝 날짜입니다.
 export type ExternalContest = { title: string; organizer: string; deadline: string; field: string; eligibility: string; url: string; source: string };
 
